@@ -1,0 +1,19 @@
+# CODEOWNERS - Define who reviews what
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owners for everything in the repo
+* @forge-features/maintainers
+
+# Core modules require maintainer review
+/src/forge/transformers/ @forge-features/maintainers
+/src/forge/generators/ @forge-features/maintainers
+/src/forge/selectors/ @forge-features/maintainers
+
+# CI/CD and infrastructure
+/.github/ @forge-features/maintainers
+/pyproject.toml @forge-features/maintainers
+/Makefile @forge-features/maintainers
+
+# Documentation can be reviewed by docs team
+/docs/ @forge-features/docs-team
+*.md @forge-features/docs-team

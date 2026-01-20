@@ -1,0 +1,63 @@
+title: "[Show & Tell]: "
+labels:
+  - "show-and-tell"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We love seeing what you build with Forge! Share your project with the community.
+
+  - type: textarea
+    id: project
+    attributes:
+      label: Project description
+      description: Tell us about what you built!
+      placeholder: |
+        I built a...
+    validations:
+      required: true
+
+  - type: textarea
+    id: how
+    attributes:
+      label: How did Forge help?
+      description: What Forge features did you use? How did it improve your workflow?
+      placeholder: |
+        Forge helped me by...
+    validations:
+      required: true
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Code snippet
+      description: Share a relevant code example (optional)
+      render: python
+    validations:
+      required: false
+
+  - type: textarea
+    id: results
+    attributes:
+      label: Results
+      description: Share any metrics, improvements, or outcomes
+      placeholder: |
+        This improved my model's accuracy by...
+    validations:
+      required: false
+
+  - type: textarea
+    id: links
+    attributes:
+      label: Links
+      description: Share links to your project, blog post, or repository (optional)
+    validations:
+      required: false
+
+  - type: textarea
+    id: lessons
+    attributes:
+      label: Lessons learned
+      description: Any tips or insights for others?
+    validations:
+      required: false

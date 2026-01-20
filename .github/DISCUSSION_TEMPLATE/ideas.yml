@@ -1,0 +1,59 @@
+title: "[Idea]: "
+labels:
+  - "enhancement"
+  - "idea"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing your idea! We love hearing from our community.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the problem or limitation you're trying to address.
+      placeholder: |
+        Currently, when I try to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe your idea for solving this problem.
+      placeholder: |
+        I think Forge could...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Have you considered any alternative solutions?
+      placeholder: |
+        I also considered...
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other context, screenshots, or examples about the feature request.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: Would you be willing to contribute this feature?
+      options:
+        - "Yes, I'd like to implement this"
+        - "Yes, with guidance"
+        - "No, but I can help test"
+        - "No"
+    validations:
+      required: true

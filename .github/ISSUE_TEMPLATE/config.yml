@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://forge.dev/docs
+    about: Check the documentation for usage guides and API reference
+  - name: Discussions
+    url: https://github.com/forge-features/forge/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: Good First Issues
+    url: https://github.com/forge-features/forge/labels/good%20first%20issue
+    about: Browse beginner-friendly issues to start contributing

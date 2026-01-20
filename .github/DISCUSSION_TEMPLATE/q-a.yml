@@ -1,0 +1,64 @@
+title: "[Question]: "
+labels:
+  - "question"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for asking! The community and maintainers are here to help.
+
+        Before asking, please:
+        - Search existing discussions and issues
+        - Check the [documentation](https://forge.dev/docs)
+        - Review the [examples](https://github.com/forge-features/forge/tree/main/examples)
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      description: What would you like to know?
+      placeholder: |
+        How do I...?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What are you trying to accomplish?
+      placeholder: |
+        I'm working on a project where...
+    validations:
+      required: false
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Code example
+      description: If applicable, share relevant code.
+      render: python
+    validations:
+      required: false
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you tried?
+      description: What approaches have you already attempted?
+      placeholder: |
+        I tried reading the docs and...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: version
+    attributes:
+      label: Forge version
+      description: What version of Forge are you using?
+      options:
+        - "0.1.x"
+        - "main branch"
+        - "Other (specify in question)"
+    validations:
+      required: true
