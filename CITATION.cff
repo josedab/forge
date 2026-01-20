@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+title: "Forge: Automated Feature Engineering for Machine Learning"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - name: "Forge Development Team"
+repository-code: "https://github.com/forge-features/forge"
+url: "https://forge.dev"
+license: Apache-2.0
+version: 0.1.0
+date-released: 2025-01-15
+keywords:
+  - feature-engineering
+  - machine-learning
+  - python
+  - scikit-learn
+  - data-science
+  - automated-ml
+abstract: >-
+  Forge is an automated feature engineering platform that reduces
+  the time data scientists spend on feature engineering by 10x.
+  It provides automatic feature generation, intelligent selection,
+  and seamless scikit-learn compatibility.
