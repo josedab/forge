@@ -1,0 +1,47 @@
+# Git
+.git
+.gitignore
+.github
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.egg-info
+.eggs
+dist
+build
+
+# Testing
+.pytest_cache
+.coverage
+htmlcov
+.tox
+.nox
+
+# Development
+.venv
+venv
+.env
+*.swp
+*.swo
+
+# IDEs
+.idea
+.vscode
+*.sublime-*
+
+# Documentation build
+site
+docs/_build
+
+# Benchmarks results
+benchmarks/results/*.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
+*.tmp
