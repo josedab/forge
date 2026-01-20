@@ -1,0 +1,98 @@
+site_name: Forge
+site_description: Automated Feature Engineering Platform for Machine Learning
+site_url: https://forge.dev
+repo_name: forge-features/forge
+repo_url: https://github.com/forge-features/forge
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - content.code.copy
+    - content.code.annotate
+    - navigation.instant
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: true
+            show_root_heading: true
+            heading_level: 2
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Quick Start: getting-started/quickstart.md
+  - User Guide:
+      - Feature Generation: guide/generation.md
+      - Feature Selection: guide/selection.md
+      - Selection Strategy Guide: guide/selection-strategy.md
+      - Pipeline Integration: guide/pipelines.md
+  - API Reference:
+      - AutoFeatureTransformer: api/auto_transformer.md
+      - Generators: api/generators.md
+      - Selectors: api/selectors.md
+  - Architecture:
+      - Overview: architecture/overview.md
+      - ADR-0001 sklearn Compatibility: architecture/adr-0001-sklearn-compatibility.md
+      - ADR-0002 Plugin Registry: architecture/adr-0002-plugin-registry-pattern.md
+      - ADR-0003 Type Inference: architecture/adr-0003-type-inference-approach.md
+      - ADR-0004 DataFrame-First Design: architecture/adr-0004-dataframe-first-design.md
+      - ADR-0005 Feature Name Tracking: architecture/adr-0005-feature-name-tracking.md
+      - ADR-0006 Generator Organization: architecture/adr-0006-hierarchical-generator-organization.md
+      - ADR-0007 Lazy Import Pattern: architecture/adr-0007-lazy-import-pattern.md
+      - ADR-0008 Composition Pipeline: architecture/adr-0008-composition-based-pipeline.md
+      - ADR-0009 Sequential Selectors: architecture/adr-0009-sequential-selector-pipeline.md
+      - ADR-0010 Analysis Phase: architecture/adr-0010-explicit-analysis-phase.md
+      - ADR-0011 Optional Dependencies: architecture/adr-0011-optional-dependencies-strategy.md
+      - ADR-0012 Exception Hierarchy: architecture/adr-0012-custom-exception-hierarchy.md
+  - Examples:
+      - Basic Usage: examples/basic.md
+      - Kaggle Workflow: examples/kaggle.md
+  - Benchmarks: benchmarks.md
+  - Contributing: contributing.md
+  - Changelog: changelog.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/forge-features/forge
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/forge-features/
+
+copyright: Copyright &copy; 2025 Forge Team
