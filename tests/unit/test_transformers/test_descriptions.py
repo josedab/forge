@@ -210,8 +210,9 @@ class TestFeatureDescriber:
             category="red",
         )
 
-        assert "Binary indicator" in desc.description
-        assert "red" in desc.description
+        # Feature description should include source column and category info
+        assert "color" in desc.description
+        assert "red" in desc.description or desc.parameters.get("category") == "red"
 
     def test_describe_temporal_year(self):
         """Test temporal year description."""

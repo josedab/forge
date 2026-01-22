@@ -73,13 +73,14 @@ class TestInteractionGeneratorProperties:
 
     @given(df=numeric_dataframe)
     @settings(max_examples=50, deadline=None)
-    def test_includes_original_columns(self, df: pd.DataFrame) -> None:
-        """Result should include original columns."""
+    def test_returns_only_generated_features(self, df: pd.DataFrame) -> None:
+        """Result should contain only generated interaction features."""
         gen = InteractionGenerator(columns=["a", "b"])
         result = gen.fit_transform(df)
-        # Original columns should be present
-        for col in df.columns:
-            assert col in result.columns
+        # Generator returns only interaction features, not originals
+        # (sklearn transformer pattern - originals can be concatenated separately)
+        feature_names = gen.get_feature_names_out()
+        assert set(result.columns) == set(feature_names)
 
     @given(df=numeric_dataframe)
     @settings(max_examples=50, deadline=None)
@@ -87,17 +88,17 @@ class TestInteractionGeneratorProperties:
         """Should generate at least one new feature."""
         gen = InteractionGenerator(columns=["a", "b"])
         result = gen.fit_transform(df)
-        # Should have more columns than original
-        assert len(result.columns) >= len(df.columns)
+        # Should have at least one generated feature (a_x_b, a_div_b with default ops)
+        assert len(result.columns) >= 1
 
     @given(df=numeric_dataframe)
     @settings(max_examples=50, deadline=None)
     def test_no_nans_from_finite_input(self, df: pd.DataFrame) -> None:
-        """No NaNs should be introduced from finite input (except division by zero)."""
+        """No NaNs should be introduced from finite input (for multiply/add ops)."""
         gen = InteractionGenerator(columns=["a", "b"], operations=["multiply", "add"])
         result = gen.fit_transform(df)
-        # For multiply and add, no NaNs should appear
-        assert not result[["a", "b"]].isna().any().any()
+        # For multiply and add operations, no NaNs should appear in generated features
+        assert not result.isna().any().any()
 
 
 class TestPolynomialGeneratorProperties:
@@ -280,9 +281,12 @@ class TestCorrelationSelectorProperties:
     @settings(max_examples=50, deadline=None)
     def test_removes_duplicate_columns(self, df: pd.DataFrame) -> None:
         """Exact duplicate columns should be removed."""
+        # Ensure column 'a' has non-zero variance for valid correlation
+        assume(df["a"].std() > 0)
+
         # Add a duplicate column
         df_with_dup = df.copy()
-        df_with_dup["a_dup"] = df["a"]
+        df_with_dup["a_dup"] = df["a"].copy()
 
         selector = CorrelationSelector(threshold=0.99)
         result = selector.fit_transform(df_with_dup)

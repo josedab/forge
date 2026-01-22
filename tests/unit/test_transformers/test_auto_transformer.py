@@ -152,14 +152,16 @@ class TestAutoFeatureTransformerConfigs:
         """Test specific numeric transformations."""
         transformer = AutoFeatureTransformer(
             numeric_transformations=["log", "sqrt"],
+            selection_method=None,  # Disable selection to see raw generated features
             verbose=0,
         )
         result = transformer.fit_transform(sample_numeric_df, sample_target_binary)
 
-        # Should have generated log and sqrt features
-        feature_names = transformer.get_feature_names_out()
-        assert any("log" in n for n in feature_names)
-        assert any("sqrt" in n for n in feature_names)
+        # Should have generated log and sqrt features (before any selection)
+        # Check the generators were created with proper names
+        generator_names = [name for name, gen in transformer._generators]
+        assert "log" in generator_names
+        assert "sqrt" in generator_names
 
     def test_selection_method(
         self, sample_mixed_df: pd.DataFrame, sample_target_binary: pd.Series

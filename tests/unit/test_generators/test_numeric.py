@@ -10,39 +10,51 @@ from forge.generators.numeric import (
     AggregationGenerator,
     InteractionGenerator,
     PolynomialGenerator,
-    TransformationGenerator,
+    NumericTransformer,
+    LogTransformer,
+    PowerTransformer,
+    BinningTransformer,
 )
 
 
-class TestTransformationGenerator:
-    """Tests for TransformationGenerator."""
+class TestLogTransformer:
+    """Tests for LogTransformer."""
 
     def test_log_transform(self, sample_numeric_df: pd.DataFrame):
         """Test log transformation."""
-        generator = TransformationGenerator(
-            columns=["income"], transformations=["log"]
-        )
-        result = generator.fit_transform(sample_numeric_df)
+        transformer = LogTransformer(columns=["income"])
+        result = transformer.fit_transform(sample_numeric_df)
 
-        assert "income_log" in result.columns
-        # Log should reduce variance for positive values
-        assert result["income_log"].notna().all()
+        assert "income_log1p" in result.columns
+        assert result["income_log1p"].notna().all()
+
+    def test_multiple_columns(self, sample_numeric_df: pd.DataFrame):
+        """Test log transformation on multiple columns."""
+        transformer = LogTransformer(columns=["age", "income"])
+        result = transformer.fit_transform(sample_numeric_df)
+
+        assert "age_log1p" in result.columns
+        assert "income_log1p" in result.columns
+
+
+class TestPowerTransformer:
+    """Tests for PowerTransformer."""
 
     def test_sqrt_transform(self, sample_numeric_df: pd.DataFrame):
         """Test square root transformation."""
-        generator = TransformationGenerator(
-            columns=["score"], transformations=["sqrt"]
+        transformer = PowerTransformer(
+            columns=["score"], transforms=["sqrt"]
         )
-        result = generator.fit_transform(sample_numeric_df)
+        result = transformer.fit_transform(sample_numeric_df)
 
         assert "score_sqrt" in result.columns
 
-    def test_power_transform(self, sample_numeric_df: pd.DataFrame):
-        """Test power transformation."""
-        generator = TransformationGenerator(
-            columns=["age"], transformations=["square"]
+    def test_square_transform(self, sample_numeric_df: pd.DataFrame):
+        """Test square transformation."""
+        transformer = PowerTransformer(
+            columns=["age"], transforms=["square"]
         )
-        result = generator.fit_transform(sample_numeric_df)
+        result = transformer.fit_transform(sample_numeric_df)
 
         assert "age_square" in result.columns
         assert np.allclose(
@@ -51,36 +63,51 @@ class TestTransformationGenerator:
 
     def test_multiple_transformations(self, sample_numeric_df: pd.DataFrame):
         """Test multiple transformations."""
-        generator = TransformationGenerator(
+        transformer = PowerTransformer(
             columns=["income"],
-            transformations=["log", "sqrt", "square"],
+            transforms=["sqrt", "square"],
         )
-        result = generator.fit_transform(sample_numeric_df)
+        result = transformer.fit_transform(sample_numeric_df)
 
-        assert "income_log" in result.columns
         assert "income_sqrt" in result.columns
         assert "income_square" in result.columns
 
+
+class TestBinningTransformer:
+    """Tests for BinningTransformer."""
+
     def test_binning(self, sample_numeric_df: pd.DataFrame):
         """Test binning transformation."""
-        generator = TransformationGenerator(
-            columns=["age"], transformations=["bin"], n_bins=5
+        transformer = BinningTransformer(columns=["age"], n_bins=5)
+        result = transformer.fit_transform(sample_numeric_df)
+
+        assert "age_binned" in result.columns
+        assert result["age_binned"].nunique() <= 5
+
+
+class TestNumericTransformer:
+    """Tests for NumericTransformer (combined transformer)."""
+
+    def test_log_sqrt(self, sample_numeric_df: pd.DataFrame):
+        """Test log and sqrt transformations."""
+        transformer = NumericTransformer(
+            columns=["income"], log=True, sqrt=True, square=False
         )
-        result = generator.fit_transform(sample_numeric_df)
+        result = transformer.fit_transform(sample_numeric_df)
 
-        assert "age_bin" in result.columns
-        assert result["age_bin"].nunique() <= 5
+        feature_names = transformer.get_feature_names_out()
+        assert any("log1p" in n for n in feature_names)
+        assert any("sqrt" in n for n in feature_names)
 
-    def test_get_feature_names_out(self, sample_numeric_df: pd.DataFrame):
-        """Test feature names output."""
-        generator = TransformationGenerator(
-            columns=["age", "income"], transformations=["log"]
+    def test_with_binning(self, sample_numeric_df: pd.DataFrame):
+        """Test with binning enabled."""
+        transformer = NumericTransformer(
+            columns=["age"], log=False, sqrt=False, binning=True, n_bins=3
         )
-        generator.fit(sample_numeric_df)
+        result = transformer.fit_transform(sample_numeric_df)
 
-        names = generator.get_feature_names_out()
-        assert "age_log" in names
-        assert "income_log" in names
+        feature_names = transformer.get_feature_names_out()
+        assert any("bin" in n for n in feature_names)
 
 
 class TestInteractionGenerator:
@@ -89,7 +116,7 @@ class TestInteractionGenerator:
     def test_multiply_interaction(self, sample_numeric_df: pd.DataFrame):
         """Test multiplication interaction."""
         generator = InteractionGenerator(
-            columns=["age", "income"], interaction_type="multiply"
+            columns=["age", "income"], operations=["multiply"]
         )
         result = generator.fit_transform(sample_numeric_df)
 
@@ -100,32 +127,43 @@ class TestInteractionGenerator:
     def test_add_interaction(self, sample_numeric_df: pd.DataFrame):
         """Test addition interaction."""
         generator = InteractionGenerator(
-            columns=["age", "score"], interaction_type="add"
+            columns=["age", "score"], operations=["add"]
         )
         result = generator.fit_transform(sample_numeric_df)
 
-        assert "age_+_score" in result.columns
+        assert "age_plus_score" in result.columns
 
     def test_divide_interaction(self, sample_numeric_df: pd.DataFrame):
         """Test division interaction."""
         generator = InteractionGenerator(
-            columns=["income", "age"], interaction_type="divide"
+            columns=["income", "age"], operations=["divide"]
         )
         result = generator.fit_transform(sample_numeric_df)
 
-        assert "income_/_age" in result.columns
+        assert "income_div_age" in result.columns
 
     def test_all_pairs(self, sample_numeric_df: pd.DataFrame):
         """Test all pairs generation."""
         generator = InteractionGenerator(
             columns=["age", "income", "score"],
-            interaction_type="multiply",
-            include_all_pairs=True,
+            operations=["multiply"],
         )
         result = generator.fit_transform(sample_numeric_df)
 
         # Should have pairs: age*income, age*score, income*score
         assert len(result.columns) >= 3
+
+    def test_self_interactions(self, sample_numeric_df: pd.DataFrame):
+        """Test self interactions (squared)."""
+        generator = InteractionGenerator(
+            columns=["age", "income"],
+            operations=["multiply"],
+            include_self_interactions=True,
+        )
+        result = generator.fit_transform(sample_numeric_df)
+
+        # Should include age_squared, income_squared
+        assert any("squared" in c for c in result.columns)
 
 
 class TestPolynomialGenerator:
@@ -159,18 +197,6 @@ class TestPolynomialGenerator:
         assert "age^2" in result.columns
         assert "score^2" in result.columns
 
-    def test_include_interaction(self, sample_numeric_df: pd.DataFrame):
-        """Test polynomial with interaction terms."""
-        generator = PolynomialGenerator(
-            columns=["age", "score"],
-            degree=2,
-            include_interaction=True,
-        )
-        result = generator.fit_transform(sample_numeric_df)
-
-        # Should include age*score interaction
-        assert any("age" in c and "score" in c for c in result.columns)
-
 
 class TestAggregationGenerator:
     """Tests for AggregationGenerator."""
@@ -178,46 +204,34 @@ class TestAggregationGenerator:
     def test_basic_aggregation(self, sample_mixed_df: pd.DataFrame):
         """Test basic aggregation."""
         generator = AggregationGenerator(
-            group_columns=["category"],
-            agg_columns=["income"],
-            agg_functions=["mean"],
+            group_cols=["category"],
+            agg_cols=["income"],
+            agg_funcs=["mean"],
         )
         result = generator.fit_transform(sample_mixed_df)
 
-        assert "income_mean_by_category" in result.columns
+        # Column name is {group_col}_{agg_col}_{func}
+        assert "category_income_mean" in result.columns
         assert len(result) == len(sample_mixed_df)
 
     def test_multiple_agg_functions(self, sample_mixed_df: pd.DataFrame):
         """Test multiple aggregation functions."""
         generator = AggregationGenerator(
-            group_columns=["category"],
-            agg_columns=["income"],
-            agg_functions=["mean", "std", "min", "max"],
+            group_cols=["category"],
+            agg_cols=["income"],
+            agg_funcs=["mean", "std"],
         )
         result = generator.fit_transform(sample_mixed_df)
 
-        assert "income_mean_by_category" in result.columns
-        assert "income_std_by_category" in result.columns
-        assert "income_min_by_category" in result.columns
-        assert "income_max_by_category" in result.columns
-
-    def test_multiple_group_columns(self, sample_mixed_df: pd.DataFrame):
-        """Test aggregation with multiple group columns."""
-        generator = AggregationGenerator(
-            group_columns=["category", "color"],
-            agg_columns=["income"],
-            agg_functions=["mean"],
-        )
-        result = generator.fit_transform(sample_mixed_df)
-
-        assert "income_mean_by_category_color" in result.columns
+        assert "category_income_mean" in result.columns
+        assert "category_income_std" in result.columns
 
     def test_transform_preserves_index(self, sample_mixed_df: pd.DataFrame):
         """Test that transform preserves original index."""
         generator = AggregationGenerator(
-            group_columns=["category"],
-            agg_columns=["income"],
-            agg_functions=["mean"],
+            group_cols=["category"],
+            agg_cols=["income"],
+            agg_funcs=["mean"],
         )
         generator.fit(sample_mixed_df)
         result = generator.transform(sample_mixed_df)

@@ -126,12 +126,12 @@ class TestCatBoostEncoder:
         global_mean = sample_target_binary.mean()
         assert result["color_catboost"].mean() != 0  # Should have values
 
-    def test_random_state(
+    def test_deterministic(
         self, sample_categorical_df: pd.DataFrame, sample_target_binary: pd.Series
     ):
-        """Test random state reproducibility."""
-        encoder1 = CatBoostEncoder(columns=["color"], random_state=42)
-        encoder2 = CatBoostEncoder(columns=["color"], random_state=42)
+        """Test deterministic encoding (same input produces same output)."""
+        encoder1 = CatBoostEncoder(columns=["color"])
+        encoder2 = CatBoostEncoder(columns=["color"])
 
         result1 = encoder1.fit_transform(sample_categorical_df, sample_target_binary)
         result2 = encoder2.fit_transform(sample_categorical_df, sample_target_binary)
@@ -185,19 +185,19 @@ class TestLeaveOneOutEncoder:
     def test_regularization(
         self, sample_categorical_df: pd.DataFrame, sample_target_binary: pd.Series
     ):
-        """Test sigma regularization parameter."""
-        encoder = LeaveOneOutEncoder(columns=["color"], sigma=0.5)
+        """Test smoothing regularization parameter."""
+        encoder = LeaveOneOutEncoder(columns=["color"], smoothing=0.5)
         result = encoder.fit_transform(sample_categorical_df, sample_target_binary)
 
         # Should still produce valid values
         assert not result["color_loo"].isna().any()
 
-    def test_random_state(
+    def test_deterministic(
         self, sample_categorical_df: pd.DataFrame, sample_target_binary: pd.Series
     ):
-        """Test random state reproducibility with sigma."""
-        encoder1 = LeaveOneOutEncoder(columns=["color"], sigma=0.1, random_state=42)
-        encoder2 = LeaveOneOutEncoder(columns=["color"], sigma=0.1, random_state=42)
+        """Test deterministic encoding (same input produces same output)."""
+        encoder1 = LeaveOneOutEncoder(columns=["color"], smoothing=0.1)
+        encoder2 = LeaveOneOutEncoder(columns=["color"], smoothing=0.1)
 
         result1 = encoder1.fit_transform(sample_categorical_df, sample_target_binary)
         result2 = encoder2.fit_transform(sample_categorical_df, sample_target_binary)
@@ -331,10 +331,10 @@ class TestSklearnCompatibility:
         """Test that LeaveOneOutEncoder can be cloned."""
         from sklearn.base import clone
 
-        encoder = LeaveOneOutEncoder(sigma=0.5)
+        encoder = LeaveOneOutEncoder(smoothing=0.5)
         cloned = clone(encoder)
 
-        assert cloned.sigma == 0.5
+        assert cloned.smoothing == 0.5
 
     def test_hashing_clone(self, sample_categorical_df: pd.DataFrame):
         """Test that HashingEncoder can be cloned."""
