@@ -295,9 +295,15 @@ class FeatureDescriber:
         FeatureDescription
             Description of the encoding feature.
         """
+        # Handle onehot specially - template key is 'onehot', not 'onehot_encoding'
+        if encoding_type == "onehot":
+            feature_type = "onehot"
+        else:
+            feature_type = f"{encoding_type}_encoding"
+
         return cls.describe(
             feature_name = feature_name,
-            feature_type = f"{encoding_type}_encoding",
+            feature_type = feature_type,
             generator = f"{encoding_type.title()}Encoder",
             col = col,
             **kwargs,
