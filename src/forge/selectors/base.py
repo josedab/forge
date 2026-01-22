@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
 import pandas as pd
@@ -31,7 +31,7 @@ class BaseFeatureSelector(BaseEstimator, TransformerMixin, ABC):
     """
 
     def __init__(self) -> None:
-        """Initialize the selector.""",
+        """Initialize the selector."""
         self._is_fitted: bool = False
         self._support_mask: NDArray[np.bool_] = np.array([], dtype=bool)
         self._feature_names_in: list[str] = []
@@ -43,8 +43,8 @@ class BaseFeatureSelector(BaseEstimator, TransformerMixin, ABC):
         """Fit the selector to the data.
 
         Args:
-            X: Input features.,
-            y: Target variable (may be required by some selectors).,
+            X: Input features.
+            y: Target variable (may be required by some selectors).
 
         Returns:
             Self for method chaining.
@@ -55,7 +55,7 @@ class BaseFeatureSelector(BaseEstimator, TransformerMixin, ABC):
         """Transform by selecting features.
 
         Args:
-            X: Input DataFrame.,
+            X: Input DataFrame.
 
         Returns:
             DataFrame with selected features.
@@ -78,8 +78,8 @@ class BaseFeatureSelector(BaseEstimator, TransformerMixin, ABC):
         """Fit and transform in one step.
 
         Args:
-            X: Input DataFrame.,
-            y: Optional target variable.,
+            X: Input DataFrame.
+            y: Optional target variable.
 
         Returns:
             DataFrame with selected features.
@@ -139,7 +139,7 @@ class BaseFeatureSelector(BaseEstimator, TransformerMixin, ABC):
         """Validate input DataFrame.
 
         Args:
-            X: Input DataFrame.,
+            X: Input DataFrame.
 
         Raises:
             ValidationError: If input is invalid.
@@ -157,19 +157,19 @@ class BaseFeatureSelector(BaseEstimator, TransformerMixin, ABC):
 
         Args:
             X: Input DataFrame.
-        """,
+        """
         self._feature_names_in = list(X.columns)
         self._feature_names_out = [
             col for col, keep in zip(self._feature_names_in, self._support_mask)
             if keep
-        ],
+        ]
         self._is_fitted = True
 
     def inverse_transform(self, X: pd.DataFrame) -> pd.DataFrame:
         """Inverse transform is not supported for selection.
 
         Args:
-            X: Input DataFrame.,
+            X: Input DataFrame.
 
         Raises:
             NotImplementedError: Always.

@@ -137,7 +137,7 @@ class ImportanceSelector(BaseFeatureSelector):
         self._feature_names_in = numeric_cols
         self._feature_names_out = [
             col for col, keep in zip(numeric_cols, mask) if keep
-        ],
+        ]
         self._is_fitted = True
 
         return self
@@ -270,7 +270,7 @@ class PermutationImportanceSelector(BaseFeatureSelector):
         self._feature_names_in = numeric_cols
         self._feature_names_out = [
             col for col, keep in zip(numeric_cols, mask) if keep
-        ],
+        ]
         self._is_fitted = True
 
         return self
