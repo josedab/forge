@@ -75,6 +75,16 @@ class WoEEncoder(BaseFeatureGenerator):
         self._woe_maps: dict[str, dict[Any, float]] = {}
         self._iv_scores: dict[str, float] = {}
 
+    @property
+    def iv_(self) -> dict[str, float]:
+        """Information Value scores for each encoded column."""
+        return self._iv_scores
+
+    @property
+    def woe_maps_(self) -> dict[str, dict[Any, float]]:
+        """WoE mapping dictionaries for each encoded column."""
+        return self._woe_maps
+
     def fit(self, X: pd.DataFrame, y: pd.Series | None = None) -> Self:
         """Compute WoE values for each category.
 
@@ -264,7 +274,7 @@ class CatBoostEncoder(BaseFeatureGenerator):
                 mask = X[col] == cat
                 cat_sum = float(y[mask].sum())
                 cat_count = float(mask.sum())
-                stats[cat] = {"sum": cat_sum, "count": cat_count},
+                stats[cat] = {"sum": cat_sum, "count": cat_count}
             self._category_stats[col] = stats
 
         self._is_fitted = True
@@ -392,7 +402,7 @@ class LeaveOneOutEncoder(BaseFeatureGenerator):
                 mask = X[col] == cat
                 cat_sum = float(y[mask].sum())
                 cat_count = float(mask.sum())
-                stats[cat] = {"sum": cat_sum, "count": cat_count},
+                stats[cat] = {"sum": cat_sum, "count": cat_count}
             self._category_stats[col] = stats
 
         self._is_fitted = True

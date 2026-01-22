@@ -64,7 +64,7 @@ class InteractionGenerator(BaseFeatureGenerator):
         """
         super().__init__()
         self.columns = columns
-        self.operations = operations or ["multiply", "divide"],
+        self.operations = operations or ["multiply", "divide"]
         self.include_self_interactions = include_self_interactions
         self.max_interactions = max_interactions
 

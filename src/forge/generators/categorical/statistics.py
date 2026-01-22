@@ -48,7 +48,7 @@ class CategoryStatistics(BaseFeatureGenerator):
         super().__init__()
         self.group_cols = group_cols
         self.agg_cols = agg_cols
-        self.stats = stats or ["mean", "std", "count"],
+        self.stats = stats or ["mean", "std", "count"]
         self.suffix = suffix
 
         # Validate stats,
@@ -158,7 +158,7 @@ class CategoryTargetStatistics(BaseFeatureGenerator):
         """
         super().__init__()
         self.columns = columns
-        self.stats = stats or ["mean", "std"],
+        self.stats = stats or ["mean", "std"]
         self.smoothing = smoothing
         self.leave_one_out = leave_one_out
 

@@ -47,7 +47,7 @@ class LagGenerator(BaseFeatureGenerator):
         """
         super().__init__()
         self.columns = columns
-        self.lags = lags or [1, 7, 14, 28],
+        self.lags = lags or [1, 7, 14, 28]
         self.group_col = group_col
         self.sort_col = sort_col
         self.fill_value = fill_value
@@ -156,7 +156,7 @@ class DiffGenerator(BaseFeatureGenerator):
         """
         super().__init__()
         self.columns = columns
-        self.periods = periods or [1, 7],
+        self.periods = periods or [1, 7]
         self.pct_change = pct_change
         self.group_col = group_col
         self.sort_col = sort_col

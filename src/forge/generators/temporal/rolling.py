@@ -53,8 +53,8 @@ class RollingWindowGenerator(BaseFeatureGenerator):
         """
         super().__init__()
         self.columns = columns
-        self.windows = windows or [7, 14, 30],
-        self.stats = stats or ["mean", "std"],
+        self.windows = windows or [7, 14, 30]
+        self.stats = stats or ["mean", "std"]
         self.group_col = group_col
         self.sort_col = sort_col
         self.min_periods = min_periods
@@ -199,7 +199,7 @@ class ExpandingWindowGenerator(BaseFeatureGenerator):
         """
         super().__init__()
         self.columns = columns
-        self.stats = stats or ["mean", "sum"],
+        self.stats = stats or ["mean", "sum"]
         self.group_col = group_col
         self.sort_col = sort_col
         self.min_periods = min_periods

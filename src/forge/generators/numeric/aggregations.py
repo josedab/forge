@@ -49,7 +49,7 @@ class AggregationGenerator(BaseFeatureGenerator):
         super().__init__()
         self.group_cols = group_cols
         self.agg_cols = agg_cols
-        self.agg_funcs = agg_funcs or ["mean", "sum", "std"],
+        self.agg_funcs = agg_funcs or ["mean", "sum", "std"]
         self.prefix = prefix
 
         # Validate functions,
@@ -167,8 +167,8 @@ class WindowAggregationGenerator(BaseFeatureGenerator):
         """
         super().__init__()
         self.columns = columns
-        self.windows = windows or [7, 14, 30],
-        self.agg_funcs = agg_funcs or ["mean", "sum"],
+        self.windows = windows or [7, 14, 30]
+        self.agg_funcs = agg_funcs or ["mean", "sum"]
         self.min_periods = min_periods
         self.sort_col = sort_col
 

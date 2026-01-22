@@ -28,23 +28,23 @@ class DateTimeComponents(BaseFeatureGenerator):
     """
 
     SUPPORTED_COMPONENTS = [
-        "year"
-        "month"
-        "day"
-        "hour"
-        "minute"
-        "second"
-        "dayofweek"
-        "dayofyear"
-        "weekofyear"
-        "quarter"
-        "is_weekend"
-        "is_month_start"
-        "is_month_end"
-        "is_quarter_start"
-        "is_quarter_end"
-        "is_year_start"
-        "is_year_end"
+        "year",
+        "month",
+        "day",
+        "hour",
+        "minute",
+        "second",
+        "dayofweek",
+        "dayofyear",
+        "weekofyear",
+        "quarter",
+        "is_weekend",
+        "is_month_start",
+        "is_month_end",
+        "is_quarter_start",
+        "is_quarter_end",
+        "is_year_start",
+        "is_year_end",
     ]
 
     def __init__(
@@ -65,13 +65,13 @@ class DateTimeComponents(BaseFeatureGenerator):
         super().__init__()
         self.columns = columns
         self.components = components or [
-            "year"
-            "month"
-            "day"
-            "dayofweek"
-            "hour"
-            "is_weekend"
-        ],
+            "year",
+            "month",
+            "day",
+            "dayofweek",
+            "hour",
+            "is_weekend",
+        ]
         self.cyclical_encode = cyclical_encode
         self.drop_original = drop_original
 
