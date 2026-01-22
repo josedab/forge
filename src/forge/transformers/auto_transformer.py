@@ -184,6 +184,12 @@ class AutoFeatureTransformer(BaseEstimator, TransformerMixin):
                 log_gen.fit(X, y)
                 self._generators.append(("log", log_gen))
 
+            if "sqrt" in transforms:
+                from forge.generators.numeric.transformations import PowerTransformer
+                sqrt_gen = PowerTransformer(columns=numeric_cols, transforms=["sqrt"])
+                sqrt_gen.fit(X, y)
+                self._generators.append(("sqrt", sqrt_gen))
+
         # Interactions
         if numeric_cols and self.generate_interactions and len(numeric_cols) >= 2:
             int_gen = InteractionGenerator(
