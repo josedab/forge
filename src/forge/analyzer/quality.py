@@ -89,7 +89,7 @@ class QualityAssessor:
 
     def _check_duplicates(self, df: pd.DataFrame) -> list[QualityIssue]:
         """Check for duplicate rows."""
-        issues: list[QualityIssue] = [],
+        issues: list[QualityIssue] = []
 
         dup_count = df.duplicated().sum()
         dup_ratio = dup_count / len(df) if len(df) > 0 else 0.0
@@ -109,7 +109,7 @@ class QualityAssessor:
 
     def _check_missing(self, col: str, series: pd.Series) -> list[QualityIssue]:
         """Check for high missing value ratios."""
-        issues: list[QualityIssue] = [],
+        issues: list[QualityIssue] = []
 
         missing_ratio = series.isna().mean()
 
@@ -129,7 +129,7 @@ class QualityAssessor:
 
     def _check_constant(self, col: str, series: pd.Series) -> list[QualityIssue]:
         """Check for constant or near-constant columns."""
-        issues: list[QualityIssue] = [],
+        issues: list[QualityIssue] = []
 
         non_null = series.dropna()
         if len(non_null) == 0:
@@ -151,7 +151,7 @@ class QualityAssessor:
 
     def _check_outliers(self, col: str, series: pd.Series) -> list[QualityIssue]:
         """Check for outliers in numeric columns."""
-        issues: list[QualityIssue] = [],
+        issues: list[QualityIssue] = []
 
         non_null = pd.to_numeric(series.dropna(), errors="coerce").dropna()
         if len(non_null) < 10:
@@ -177,7 +177,7 @@ class QualityAssessor:
 
     def _check_infinite(self, col: str, series: pd.Series) -> list[QualityIssue]:
         """Check for infinite values in numeric columns."""
-        issues: list[QualityIssue] = [],
+        issues: list[QualityIssue] = []
 
         non_null = pd.to_numeric(series.dropna(), errors="coerce")
         inf_count = np.isinf(non_null).sum()
@@ -197,7 +197,7 @@ class QualityAssessor:
 
     def _check_cardinality(self, col: str, series: pd.Series) -> list[QualityIssue]:
         """Check for high cardinality in categorical columns."""
-        issues: list[QualityIssue] = [],
+        issues: list[QualityIssue] = []
 
         n_unique = series.nunique()
 
