@@ -13,7 +13,11 @@ The main entry point for automatic feature engineering.
 | `categorical_encoding` | `str` | `"auto"` | Encoding strategy: `"auto"`, `"target"`, `"frequency"`, `"onehot"` |
 | `temporal_features` | `list[str] \| None` | `None` | Temporal components to extract |
 | `missing_strategy` | `str` | `"auto"` | Imputation strategy: `"auto"`, `"mean"`, `"median"`, `"mode"` |
-| `selection_method` | `str` | `"importance"` | Selection method: `"importance"`, `"mutual_info"`, `"shap"` |
+| `selection_method` | `str` | `"importance"` | Selection method: `"importance"`, `"statistical"`, `"correlation"` |
+| `generate_interactions` | `bool` | `True` | Whether to generate feature interactions |
+| `generate_polynomials` | `bool` | `False` | Whether to generate polynomial features |
+| `correlation_threshold` | `float` | `0.95` | Threshold for removing correlated features |
+| `variance_threshold` | `float` | `0.0` | Threshold for removing low-variance features |
 | `n_jobs` | `int` | `-1` | Number of parallel jobs |
 | `random_state` | `int \| None` | `None` | Random seed for reproducibility |
 | `verbose` | `int` | `0` | Verbosity level |

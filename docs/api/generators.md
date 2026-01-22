@@ -31,17 +31,58 @@ gen = InteractionGenerator(
 )
 ```
 
-### TransformationGenerator
+### NumericTransformer
 
-Apply mathematical transformations.
+Apply mathematical transformations to numeric columns.
 
 ```python
-from forge.generators.numeric import TransformationGenerator
+from forge.generators.numeric import NumericTransformer
 
-gen = TransformationGenerator(
+# Combined transformer with multiple options
+gen = NumericTransformer(
     columns=['income', 'age'],
-    transformations=['log', 'sqrt', 'square', 'reciprocal']
+    log=True,      # Apply log1p transformation
+    sqrt=True,     # Apply square root transformation
+    square=False,  # Apply square transformation
+    binning=False, # Create binned features
+    n_bins=5       # Number of bins if binning=True
 )
+```
+
+### LogTransformer
+
+Apply log transformation to numeric columns.
+
+```python
+from forge.generators.numeric import LogTransformer
+
+gen = LogTransformer(columns=['income', 'price'])
+# Creates: income_log1p, price_log1p
+```
+
+### PowerTransformer
+
+Apply power transformations (sqrt, square) to numeric columns.
+
+```python
+from forge.generators.numeric import PowerTransformer
+
+gen = PowerTransformer(
+    columns=['age', 'score'],
+    transforms=['sqrt', 'square']
+)
+# Creates: age_sqrt, age_square, score_sqrt, score_square
+```
+
+### BinningTransformer
+
+Create binned features from numeric columns.
+
+```python
+from forge.generators.numeric import BinningTransformer
+
+gen = BinningTransformer(columns=['age'], n_bins=5)
+# Creates: age_binned (categorical)
 ```
 
 ### PolynomialGenerator
@@ -87,6 +128,86 @@ Create combined category features.
 from forge.generators.categorical import CategoryCombiner
 
 combiner = CategoryCombiner(columns=['category', 'region'])
+```
+
+### OneHotEncoder
+
+One-hot encode categorical features.
+
+```python
+from forge.generators.categorical import OneHotEncoder
+
+encoder = OneHotEncoder(
+    columns=['color', 'size'],
+    drop_first=False,  # Whether to drop first category to avoid multicollinearity
+    handle_unknown='ignore'
+)
+```
+
+### OrdinalEncoder
+
+Ordinal integer encode categorical features.
+
+```python
+from forge.generators.categorical import OrdinalEncoder
+
+encoder = OrdinalEncoder(
+    columns=['education'],
+    categories={'education': ['high_school', 'bachelor', 'master', 'phd']}
+)
+```
+
+### WoEEncoder
+
+Weight of Evidence encoding for binary classification targets.
+
+```python
+from forge.generators.categorical import WoEEncoder
+
+encoder = WoEEncoder(
+    columns=['category'],
+    regularization=1.0  # Laplace smoothing factor
+)
+# Requires binary target during fit
+```
+
+### CatBoostEncoder
+
+CatBoost-style ordered target encoding that prevents target leakage.
+
+```python
+from forge.generators.categorical import CatBoostEncoder
+
+encoder = CatBoostEncoder(
+    columns=['category'],
+    a=1.0  # Smoothing parameter
+)
+```
+
+### LeaveOneOutEncoder
+
+Leave-one-out target encoding for reduced target leakage.
+
+```python
+from forge.generators.categorical import LeaveOneOutEncoder
+
+encoder = LeaveOneOutEncoder(
+    columns=['category'],
+    sigma=0.05  # Noise level for regularization
+)
+```
+
+### HashingEncoder
+
+Feature hashing for high-cardinality categorical features.
+
+```python
+from forge.generators.categorical import HashingEncoder
+
+encoder = HashingEncoder(
+    columns=['user_id'],
+    n_components=32  # Number of hash buckets
+)
 ```
 
 ## Temporal Generators
