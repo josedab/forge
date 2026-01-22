@@ -104,7 +104,7 @@ class FeatureInfo:
     name: str
     source_columns: list[str]
     generator: str
-    importance: float | None = None,
+    importance: float | None = None
     selected: bool = True
 
 
