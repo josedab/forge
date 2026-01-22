@@ -102,7 +102,7 @@ class TypeInferrer:
 
             sample = non_null.head(100)
             try:
-                pd.to_datetime(sample, infer_datetime_format=True)
+                pd.to_datetime(sample)
                 # Check if most values can be parsed
                 parsed = pd.to_datetime(non_null, errors="coerce")
                 if parsed.notna().mean() > 0.9:
