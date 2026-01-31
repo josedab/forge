@@ -2,22 +2,28 @@
 
 from __future__ import annotations
 
-from forge.documentation.generator import (
-    FeatureDocumentationGenerator,
-    FeatureDoc,
-    DatasetDoc,
-    generate_feature_docs,
-)
 from forge.documentation.catalog import (
-    FeatureCatalog,
     CatalogEntry,
+    FeatureCatalog,
     create_catalog,
 )
 from forge.documentation.export import (
-    MarkdownExporter,
     HTMLExporter,
     JSONExporter,
+    MarkdownExporter,
     export_documentation,
+)
+from forge.documentation.generator import (
+    DatasetDoc,
+    FeatureDoc,
+    FeatureDocumentationGenerator,
+    generate_feature_docs,
+)
+from forge.documentation.governance import (
+    ComplianceReport,
+    FeatureGovernance,
+    GovernanceManager,
+    SLAConfig,
 )
 
 __all__ = [
@@ -35,4 +41,9 @@ __all__ = [
     "HTMLExporter",
     "JSONExporter",
     "export_documentation",
+    # Governance
+    "ComplianceReport",
+    "FeatureGovernance",
+    "GovernanceManager",
+    "SLAConfig",
 ]
