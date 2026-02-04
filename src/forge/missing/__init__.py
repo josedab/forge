@@ -12,10 +12,10 @@ from forge.missing.strategies import (
 )
 
 __all__ = [
-    "MeanMedianImputer",
-    "ModeImputer",
+    "AutoImputer",
     "ConstantImputer",
     "KNNImputer",
-    "AutoImputer",
+    "MeanMedianImputer",
     "MissingIndicator",
+    "ModeImputer",
 ]

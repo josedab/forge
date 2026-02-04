@@ -14,7 +14,7 @@ ArbitraryCapper
 Trimmer
     Remove rows containing outliers.
 
-Examples
+Examples:
 --------
 >>> from forge.outliers import Winsorizer
 >>> import pandas as pd
@@ -23,13 +23,13 @@ Examples
 >>> df_capped = winsorizer.fit_transform(df)
 """
 
-from forge.outliers.winsorizer import Winsorizer
-from forge.outliers.capper import IQRCapper, ArbitraryCapper
+from forge.outliers.capper import ArbitraryCapper, IQRCapper
 from forge.outliers.trimmer import Trimmer
+from forge.outliers.winsorizer import Winsorizer
 
 __all__ = [
-    "Winsorizer",
-    "IQRCapper",
     "ArbitraryCapper",
+    "IQRCapper",
     "Trimmer",
+    "Winsorizer",
 ]

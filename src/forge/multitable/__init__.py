@@ -6,26 +6,34 @@ enabling automatic join detection and deep feature synthesis.
 
 from __future__ import annotations
 
+from forge.multitable.join_optimizer import (
+    CrossTableAggregator,
+    JoinPath,
+    JoinPathFinder,
+)
 from forge.multitable.relationships import (
     Relationship,
-    RelationshipType,
     RelationshipGraph,
+    RelationshipType,
     detect_relationships,
 )
 from forge.multitable.synthesis import (
-    DeepFeatureSynthesis,
     AggregationPrimitive,
+    DeepFeatureSynthesis,
     TransformPrimitive,
 )
 from forge.multitable.transformer import MultiTableTransformer
 
 __all__ = [
-    "Relationship",
-    "RelationshipType",
-    "RelationshipGraph",
-    "detect_relationships",
-    "DeepFeatureSynthesis",
     "AggregationPrimitive",
-    "TransformPrimitive",
+    "CrossTableAggregator",
+    "DeepFeatureSynthesis",
+    "JoinPath",
+    "JoinPathFinder",
     "MultiTableTransformer",
+    "Relationship",
+    "RelationshipGraph",
+    "RelationshipType",
+    "TransformPrimitive",
+    "detect_relationships",
 ]

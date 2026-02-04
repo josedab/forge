@@ -3,22 +3,22 @@
 from __future__ import annotations
 
 from forge.generators.base import BaseFeatureGenerator
+from forge.generators.interactions import (
+    GroupedInteractionGenerator,
+    InteractionCandidate,
+    InteractionDiscoverer,
+    PolynomialInteractionGenerator,
+    discover_interactions,
+)
 from forge.generators.registry import GeneratorRegistry, get_registry
 from forge.generators.timeseries import (
-    TimeSeriesFeatureGenerator,
-    SeasonalDecomposer,
+    DatetimeConfig,
     FourierFeatureGenerator,
     LagConfig,
     RollingConfig,
-    DatetimeConfig,
+    SeasonalDecomposer,
+    TimeSeriesFeatureGenerator,
     generate_timeseries_features,
-)
-from forge.generators.interactions import (
-    InteractionDiscoverer,
-    PolynomialInteractionGenerator,
-    GroupedInteractionGenerator,
-    InteractionCandidate,
-    discover_interactions,
 )
 
 __all__ = [

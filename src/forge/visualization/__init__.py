@@ -8,9 +8,9 @@ from forge.visualization.importance import plot_feature_importance
 from forge.visualization.shap_plots import plot_shap_summary, plot_shap_waterfall
 
 __all__ = [
-    "plot_feature_importance",
     "plot_correlation_matrix",
+    "plot_feature_distributions",
+    "plot_feature_importance",
     "plot_shap_summary",
     "plot_shap_waterfall",
-    "plot_feature_distributions",
 ]

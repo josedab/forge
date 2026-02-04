@@ -7,21 +7,37 @@ Tecton, and Hopsworks, enabling seamless feature registration and serving.
 from __future__ import annotations
 
 from forge.registry.base import (
-    FeatureRegistry,
     FeatureDefinition,
-    FeatureVersion,
+    FeatureRegistry,
     FeatureSet,
+    FeatureVersion,
     RegistryConfig,
 )
 from forge.registry.feast_registry import FeastRegistry
 from forge.registry.local_registry import LocalRegistry
+from forge.registry.sync import (
+    ConflictStrategy,
+    FeatureStoreSync,
+    LineageRecord,
+    SyncAction,
+    SyncConfig,
+    SyncDirection,
+    SyncResult,
+)
 
 __all__ = [
-    "FeatureRegistry",
-    "FeatureDefinition",
-    "FeatureVersion",
-    "FeatureSet",
-    "RegistryConfig",
+    "ConflictStrategy",
     "FeastRegistry",
+    "FeatureDefinition",
+    "FeatureRegistry",
+    "FeatureSet",
+    "FeatureStoreSync",
+    "FeatureVersion",
+    "LineageRecord",
     "LocalRegistry",
+    "RegistryConfig",
+    "SyncAction",
+    "SyncConfig",
+    "SyncDirection",
+    "SyncResult",
 ]

@@ -6,17 +6,17 @@ It analyzes data metadata and suggests domain-relevant features.
 
 from __future__ import annotations
 
-from forge.llm.metadata import MetadataExtractor, DatasetMetadata, ColumnMetadata
-from forge.llm.suggestions import FeatureSuggester, FeatureSuggestion
-from forge.llm.generator import LLMFeatureGenerator
 from forge.llm.explainer import FeatureExplainer
+from forge.llm.generator import LLMFeatureGenerator
+from forge.llm.metadata import ColumnMetadata, DatasetMetadata, MetadataExtractor
+from forge.llm.suggestions import FeatureSuggester, FeatureSuggestion
 
 __all__ = [
-    "MetadataExtractor",
-    "DatasetMetadata",
     "ColumnMetadata",
+    "DatasetMetadata",
+    "FeatureExplainer",
     "FeatureSuggester",
     "FeatureSuggestion",
     "LLMFeatureGenerator",
-    "FeatureExplainer",
+    "MetadataExtractor",
 ]

@@ -10,8 +10,8 @@ from forge.analyzer.type_inference import TypeInferrer
 
 __all__ = [
     "DataAnalyzer",
-    "TypeInferrer",
-    "StatisticsProfiler",
     "QualityAssessor",
     "ReportBuilder",
+    "StatisticsProfiler",
+    "TypeInferrer",
 ]
