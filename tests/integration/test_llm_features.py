@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from forge import LLMFeatureGenerator, FeatureSuggester, MetadataExtractor, FeatureExplainer
+from forge import FeatureSuggester, LLMFeatureGenerator, MetadataExtractor
 from forge.llm.suggestions import FeatureSuggestion
 
 
@@ -465,10 +465,7 @@ class TestIntegrationWorkflow:
 
     def test_full_workflow_with_sklearn_pipeline(self, sample_df, sample_target, mock_suggestions):
         """Test full workflow with sklearn pipeline."""
-        from sklearn.compose import ColumnTransformer
         from sklearn.ensemble import RandomForestClassifier
-        from sklearn.pipeline import Pipeline
-        from sklearn.preprocessing import StandardScaler
 
         with patch("forge.llm.generator.FeatureSuggester") as MockSuggester:
             MockSuggester.return_value.suggest.return_value = mock_suggestions

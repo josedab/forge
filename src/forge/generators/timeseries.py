@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, Any, Callable, Literal
+from typing import TYPE_CHECKING, Any, Literal
 
 import numpy as np
 import pandas as pd
 
-from forge.exceptions import NotFittedError, ValidationError
+from forge.exceptions import ValidationError
 from forge.generators.base import BaseFeatureGenerator
 
 if TYPE_CHECKING:

@@ -35,14 +35,14 @@ class Trimmer(BaseEstimator, TransformerMixin):
     upper_percentile : float, default=0.99
         Upper percentile when method='percentile'.
 
-    Attributes
+    Attributes:
     ----------
     bounds_ : dict[str, tuple[float, float]]
         Dictionary mapping column names to (lower, upper) bound tuples.
     feature_names_in_ : list[str]
         Names of features seen during fit.
 
-    Examples
+    Examples:
     --------
     >>> from forge.outliers import Trimmer
     >>> import pandas as pd
@@ -55,14 +55,14 @@ class Trimmer(BaseEstimator, TransformerMixin):
     >>> len(result) < len(df)  # Row with outlier removed
     True
 
-    Notes
+    Notes:
     -----
     Trimmer removes rows during transform, which means the output will have
     fewer rows than the input. This can cause issues with corresponding
     target arrays in supervised learning. Consider using Winsorizer or
     IQRCapper instead if preserving all rows is important.
 
-    See Also
+    See Also:
     --------
     Winsorizer : Cap outliers at percentiles (preserves rows).,
     IQRCapper : Cap outliers using IQR method (preserves rows).
@@ -92,7 +92,7 @@ class Trimmer(BaseEstimator, TransformerMixin):
         y : pd.Series | None, default=None
             Ignored. Present for sklearn compatibility.
 
-        Returns
+        Returns:
         -------
         self
             Fitted transformer.
@@ -135,7 +135,7 @@ class Trimmer(BaseEstimator, TransformerMixin):
         X : pd.DataFrame
             Data to transform.
 
-        Returns
+        Returns:
         -------
         pd.DataFrame
             Data with outlier rows removed.

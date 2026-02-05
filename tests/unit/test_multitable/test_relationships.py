@@ -1,16 +1,15 @@
 """Tests for relationship management module."""
 
-import numpy as np
 import pandas as pd
 import pytest
 
+from forge.exceptions import ConfigurationError
 from forge.multitable.relationships import (
     Relationship,
-    RelationshipType,
     RelationshipGraph,
+    RelationshipType,
     detect_relationships,
 )
-from forge.exceptions import ValidationError, ConfigurationError
 
 
 @pytest.fixture

@@ -1,15 +1,12 @@
 """Tests for deep feature synthesis module."""
 
-import numpy as np
 import pandas as pd
 import pytest
 
 from forge.multitable.relationships import RelationshipGraph
 from forge.multitable.synthesis import (
-    DeepFeatureSynthesis,
-    AggregationPrimitive,
-    TransformPrimitive,
     AGGREGATION_PRIMITIVES,
+    DeepFeatureSynthesis,
     create_dfs,
 )
 

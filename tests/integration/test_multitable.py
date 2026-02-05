@@ -10,13 +10,13 @@ import pandas as pd
 import pytest
 
 from forge import (
+    DeepFeatureSynthesis,
     MultiTableTransformer,
     RelationshipGraph,
-    DeepFeatureSynthesis,
     detect_relationships,
     multi_table_features,
 )
-from forge.multitable.relationships import Relationship, RelationshipType
+from forge.multitable.relationships import RelationshipType
 
 
 @pytest.fixture

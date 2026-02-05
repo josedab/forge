@@ -4,14 +4,13 @@ from __future__ import annotations
 
 import sys
 import tempfile
-from datetime import datetime
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
 import pandas as pd
 import pytest
 
-from forge.exceptions import ConfigurationError, MissingDependencyError, ValidationError
+from forge.exceptions import ConfigurationError, ValidationError
 from forge.registry.base import (
     FeatureDefinition,
     FeatureSet,

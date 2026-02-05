@@ -3,18 +3,12 @@
 from __future__ import annotations
 
 import hashlib
-import json
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import TYPE_CHECKING, Any, Literal
+from typing import Any
 
 import numpy as np
 import pandas as pd
-
-from forge.types import ColumnType
-
-if TYPE_CHECKING:
-    pass
 
 
 @dataclass

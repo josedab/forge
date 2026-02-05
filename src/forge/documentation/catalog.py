@@ -3,15 +3,13 @@
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass, field
+from collections.abc import Iterator
+from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Iterator, Literal
+from typing import Any, Literal
 
-from forge.documentation.generator import FeatureDoc, DatasetDoc
-
-if TYPE_CHECKING:
-    pass
+from forge.documentation.generator import DatasetDoc, FeatureDoc
 
 
 @dataclass

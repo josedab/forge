@@ -7,7 +7,6 @@ from typing import TYPE_CHECKING, Any
 import numpy as np
 import pandas as pd
 from sklearn.impute import KNNImputer as SKLearnKNNImputer
-from sklearn.impute import SimpleImputer
 
 from forge.generators.base import BaseFeatureGenerator
 

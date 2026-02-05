@@ -30,7 +30,7 @@ class Winsorizer(BaseEstimator, TransformerMixin):
         Upper percentile for capping (e.g., 0.99 = 99th percentile).
         Values above this percentile are set to the percentile value.
 
-    Attributes
+    Attributes:
     ----------
     bounds_ : dict[str, tuple[float, float]]
         Dictionary mapping column names to (lower, upper) bound tuples.
@@ -39,7 +39,7 @@ class Winsorizer(BaseEstimator, TransformerMixin):
     n_features_in_ : int
         Number of features seen during fit.
 
-    Examples
+    Examples:
     --------
     >>> from forge.outliers import Winsorizer
     >>> import pandas as pd
@@ -52,7 +52,7 @@ class Winsorizer(BaseEstimator, TransformerMixin):
     >>> result['value'].max() < 100  # Outlier capped
     True
 
-    See Also
+    See Also:
     --------
     IQRCapper : Cap outliers using IQR method.,
     ArbitraryCapper : Cap outliers at specific values.
@@ -78,7 +78,7 @@ class Winsorizer(BaseEstimator, TransformerMixin):
         y : pd.Series | None, default=None
             Ignored. Present for sklearn compatibility.
 
-        Returns
+        Returns:
         -------
         self
             Fitted transformer.
@@ -115,7 +115,7 @@ class Winsorizer(BaseEstimator, TransformerMixin):
         X : pd.DataFrame
             Data to transform.
 
-        Returns
+        Returns:
         -------
         pd.DataFrame
             Transformed data with outliers capped.
@@ -142,7 +142,7 @@ class Winsorizer(BaseEstimator, TransformerMixin):
         input_features : list[str] | None, default=None
             Ignored. Present for sklearn compatibility.
 
-        Returns
+        Returns:
         -------
         list[str]
             Output feature names (unchanged from input).

@@ -14,7 +14,7 @@ from typing import Any
 class FeatureDescription:
     """Describes a generated feature's origin and meaning.
 
-    Attributes
+    Attributes:
     ----------
     name : str
         The feature name.
@@ -29,7 +29,7 @@ class FeatureDescription:
     feature_type : str
         Type of feature (numeric, categorical, temporal, etc.).
 
-    Examples
+    Examples:
     --------
     >>> desc = FeatureDescription(
     ...     name="price_quantity_multiply"
@@ -53,7 +53,7 @@ class FeatureDescription:
     def to_natural_language(self) -> str:
         """Generate human-readable description.
 
-        Returns
+        Returns:
         -------
         str
             Natural language description of the feature.
@@ -63,7 +63,7 @@ class FeatureDescription:
     def to_dict(self) -> dict[str, Any]:
         """Convert to dictionary representation.
 
-        Returns
+        Returns:
         -------
         dict
             Dictionary with all feature metadata.
@@ -84,7 +84,7 @@ class FeatureDescriber:
     This class provides templates and methods for creating human-readable
     descriptions of engineered features.
 
-    Examples
+    Examples:
     --------
     >>> describer = FeatureDescriber()
     >>> desc = describer.describe_interaction(
@@ -171,7 +171,7 @@ class FeatureDescriber:
         **kwargs
             Template parameters (col, col1, col2, etc.).
 
-        Returns
+        Returns:
         -------
         FeatureDescription
             Complete feature description object.
@@ -218,7 +218,7 @@ class FeatureDescriber:
         operation : str
             Operation type (multiply, divide, add, subtract).
 
-        Returns
+        Returns:
         -------
         FeatureDescription
             Description of the interaction feature.
@@ -249,7 +249,7 @@ class FeatureDescriber:
         degree : int
             Polynomial degree.
 
-        Returns
+        Returns:
         -------
         FeatureDescription
             Description of the polynomial feature.
@@ -290,7 +290,7 @@ class FeatureDescriber:
         **kwargs
             Additional parameters (category for onehot, etc.).
 
-        Returns
+        Returns:
         -------
         FeatureDescription
             Description of the encoding feature.
@@ -327,7 +327,7 @@ class FeatureDescriber:
         component : str
             Temporal component (year, month, day, etc.).
 
-        Returns
+        Returns:
         -------
         FeatureDescription
             Description of the temporal feature.
@@ -357,7 +357,7 @@ class FeatureDescriber:
         n : int
             Number of periods to lag.
 
-        Returns
+        Returns:
         -------
         FeatureDescription
             Description of the lag feature.
@@ -391,7 +391,7 @@ class FeatureDescriber:
         statistic : str
             Rolling statistic (mean, std, min, max).
 
-        Returns
+        Returns:
         -------
         FeatureDescription
             Description of the rolling feature.
@@ -411,7 +411,7 @@ class FeatureLineage:
     Maintains a record of how features were created, enabling
     traceability and understanding of the feature engineering pipeline.
 
-    Examples
+    Examples:
     --------
     >>> lineage = FeatureLineage()
     >>> lineage.add_feature(
@@ -472,7 +472,7 @@ class FeatureLineage:
         feature_name : str
             Name of the feature.
 
-        Returns
+        Returns:
         -------
         list[str]
             List of source column names.
@@ -489,7 +489,7 @@ class FeatureLineage:
         feature_name : str
             Name of the feature.
 
-        Returns
+        Returns:
         -------
         FeatureDescription | None
             Description if available, None otherwise.
@@ -499,7 +499,7 @@ class FeatureLineage:
     def get_all_descriptions(self) -> dict[str, FeatureDescription]:
         """Get all feature descriptions.
 
-        Returns
+        Returns:
         -------
         dict[str, FeatureDescription]
             Dictionary mapping feature names to descriptions.
@@ -514,7 +514,7 @@ class FeatureLineage:
         feature_name : str
             Name of the feature to trace.
 
-        Returns
+        Returns:
         -------
         list[str]
             List of original column names.
@@ -531,7 +531,7 @@ class FeatureLineage:
     def to_dataframe(self) -> Any:
         """Export lineage as a DataFrame.
 
-        Returns
+        Returns:
         -------
         pd.DataFrame
             DataFrame with lineage information.

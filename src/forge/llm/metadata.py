@@ -7,7 +7,6 @@ import json
 from dataclasses import dataclass, field
 from typing import Any
 
-import numpy as np
 import pandas as pd
 
 from forge.analyzer.type_inference import TypeInferrer

@@ -7,7 +7,7 @@ and other statistical measures.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Literal
 
 import numpy as np
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class DriftReport:
     """Report of drift detection results.
 
-    Attributes
+    Attributes:
     ----------
     feature_name : str
         Name of the feature analyzed.
@@ -96,12 +96,12 @@ def calculate_psi(
     epsilon : float
         Small value to avoid division by zero and log(0).
 
-    Returns
+    Returns:
     -------
     float
         PSI value.
 
-    Examples
+    Examples:
     --------
     >>> import numpy as np
     >>> expected = np.random.normal(0, 1, 10000)
@@ -110,7 +110,7 @@ def calculate_psi(
     >>> print(f"PSI: {psi:.4f}")
     PSI: 0.1234
 
-    Notes
+    Notes:
     -----
     PSI formula: sum((actual_% - expected_%) * ln(actual_% / expected_%))
     """
@@ -155,7 +155,7 @@ def interpret_psi(psi_value: float) -> tuple[str, str]:
     psi_value : float
         PSI value to interpret.
 
-    Returns
+    Returns:
     -------
     tuple[str, str]
         Drift level and recommendation.
@@ -190,7 +190,7 @@ class PSICalculator(BaseEstimator, TransformerMixin):
     threshold : float
         PSI threshold for flagging drift (default 0.2).
 
-    Attributes
+    Attributes:
     ----------
     baseline_distributions_ : dict
         Stored baseline distributions for each column.
@@ -201,7 +201,7 @@ class PSICalculator(BaseEstimator, TransformerMixin):
     drift_reports_ : dict
         Detailed drift reports (populated after transform).
 
-    Examples
+    Examples:
     --------
     >>> from forge.monitoring import PSICalculator
     >>> import pandas as pd
@@ -241,7 +241,7 @@ class PSICalculator(BaseEstimator, TransformerMixin):
         y : Any
             Ignored. Present for sklearn compatibility.
 
-        Returns
+        Returns:
         -------
         Self
             Fitted calculator.
@@ -274,7 +274,7 @@ class PSICalculator(BaseEstimator, TransformerMixin):
         X : pd.DataFrame
             New data to check for drift.
 
-        Returns
+        Returns:
         -------
         pd.DataFrame
             Input data unchanged (PSI values stored in attributes).
@@ -333,7 +333,7 @@ class PSICalculator(BaseEstimator, TransformerMixin):
     def get_drift_summary(self) -> dict[str, Any]:
         """Get summary of drift detection results.
 
-        Returns
+        Returns:
         -------
         dict
             Summary with counts by drift level and flagged features.
@@ -369,7 +369,7 @@ class PSICalculator(BaseEstimator, TransformerMixin):
         input_features : list[str] | None
             Input feature names (ignored, uses fitted names).
 
-        Returns
+        Returns:
         -------
         list[str]
             Feature names being monitored.
@@ -394,14 +394,14 @@ class DriftDetector(BaseEstimator):
     columns : list[str] | None
         Columns to monitor. If None, monitors all numeric columns.
 
-    Attributes
+    Attributes:
     ----------
     baseline_data_ : pd.DataFrame
         Stored baseline data.
     drift_results_ : dict
         Results from the most recent drift check.
 
-    Examples
+    Examples:
     --------
     >>> from forge.monitoring import DriftDetector
     >>>
@@ -435,7 +435,7 @@ class DriftDetector(BaseEstimator):
         y : Any
             Ignored.
 
-        Returns
+        Returns:
         -------
         Self
             Fitted detector.
@@ -463,7 +463,7 @@ class DriftDetector(BaseEstimator):
         X : pd.DataFrame
             New data to check.
 
-        Returns
+        Returns:
         -------
         bool
             True if significant drift is detected.
@@ -540,7 +540,7 @@ class DriftDetector(BaseEstimator):
     def get_report(self) -> dict[str, Any]:
         """Get detailed drift report.
 
-        Returns
+        Returns:
         -------
         dict
             Detailed drift analysis results.

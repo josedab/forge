@@ -29,7 +29,7 @@ class IQRCapper(BaseEstimator, TransformerMixin):
         - 1.5: Standard outlier detection (Tukey's method)
         - 3.0: Extreme outlier detection
 
-    Attributes
+    Attributes:
     ----------
     bounds_ : dict[str, tuple[float, float]]
         Dictionary mapping column names to (lower, upper) bound tuples.
@@ -38,7 +38,7 @@ class IQRCapper(BaseEstimator, TransformerMixin):
     feature_names_in_ : list[str]
         Names of features seen during fit.
 
-    Examples
+    Examples:
     --------
     >>> from forge.outliers import IQRCapper
     >>> import pandas as pd
@@ -48,7 +48,7 @@ class IQRCapper(BaseEstimator, TransformerMixin):
     >>> result['value'].max() < 100  # Extreme outlier capped
     True
 
-    See Also
+    See Also:
     --------
     Winsorizer : Cap outliers at percentiles.,
     ArbitraryCapper : Cap outliers at specific values.
@@ -72,7 +72,7 @@ class IQRCapper(BaseEstimator, TransformerMixin):
         y : pd.Series | None, default=None
             Ignored. Present for sklearn compatibility.
 
-        Returns
+        Returns:
         -------
         self
             Fitted transformer.
@@ -114,7 +114,7 @@ class IQRCapper(BaseEstimator, TransformerMixin):
         X : pd.DataFrame
             Data to transform.
 
-        Returns
+        Returns:
         -------
         pd.DataFrame
             Transformed data with outliers capped.
@@ -152,14 +152,14 @@ class ArbitraryCapper(BaseEstimator, TransformerMixin):
         a dict with optional 'lower' and/or 'upper' keys.
         Example: {'age': {'lower': 0, 'upper': 120}}
 
-    Attributes
+    Attributes:
     ----------
     capping_dict_ : dict[str, dict[str, float]]
         Validated capping dictionary.
     feature_names_in_ : list[str]
         Names of features seen during fit.
 
-    Examples
+    Examples:
     --------
     >>> from forge.outliers import ArbitraryCapper
     >>> import pandas as pd
@@ -174,7 +174,7 @@ class ArbitraryCapper(BaseEstimator, TransformerMixin):
     >>> result['score'].max() <= 100  # Score over 100 capped
     True
 
-    See Also
+    See Also:
     --------
     Winsorizer : Cap outliers at percentiles.,
     IQRCapper : Cap outliers using IQR method.
@@ -196,7 +196,7 @@ class ArbitraryCapper(BaseEstimator, TransformerMixin):
         y : pd.Series | None, default=None
             Ignored. Present for sklearn compatibility.
 
-        Returns
+        Returns:
         -------
         self
             Fitted transformer.
@@ -236,7 +236,7 @@ class ArbitraryCapper(BaseEstimator, TransformerMixin):
         X : pd.DataFrame
             Data to transform.
 
-        Returns
+        Returns:
         -------
         pd.DataFrame
             Transformed data with outliers capped.

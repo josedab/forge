@@ -9,8 +9,8 @@ from typing import Any
 
 import pandas as pd
 
-from forge.exceptions import ConfigurationError, NotFittedError
-from forge.llm.suggestions import FeatureSuggestion, LLMProvider, OpenAIProvider, AnthropicProvider
+from forge.exceptions import ConfigurationError
+from forge.llm.suggestions import AnthropicProvider, FeatureSuggestion, LLMProvider, OpenAIProvider
 
 
 @dataclass
@@ -52,13 +52,13 @@ class FeatureExplanation:
             "",
             f"**Transformation:** {self.transformation}",
             "",
-            f"### Why This Feature Matters",
+            "### Why This Feature Matters",
             self.rationale,
             "",
-            f"### Domain Interpretation",
+            "### Domain Interpretation",
             self.domain_interpretation,
             "",
-            f"### Usage Guidance",
+            "### Usage Guidance",
             self.usage_guidance,
         ]
 
@@ -163,11 +163,11 @@ class ExplanationReport:
                 f"<p><strong>Description:</strong> {escape(exp.description)}</p>",
                 f"<p class='meta'><strong>Source:</strong> {escape(', '.join(exp.source_columns))} | ",
                 f"<strong>Transformation:</strong> {escape(exp.transformation)}</p>",
-                f"<h3>Why This Feature Matters</h3>",
+                "<h3>Why This Feature Matters</h3>",
                 f"<p>{escape(exp.rationale)}</p>",
-                f"<h3>Domain Interpretation</h3>",
+                "<h3>Domain Interpretation</h3>",
                 f"<p>{escape(exp.domain_interpretation)}</p>",
-                f"<h3>Usage Guidance</h3>",
+                "<h3>Usage Guidance</h3>",
                 f"<p>{escape(exp.usage_guidance)}</p>",
             ])
 
@@ -318,7 +318,7 @@ Output valid JSON with this structure:
             FeatureExplanation with detailed information.
         """
         prompt_parts = [
-            f"Explain this feature in detail:\n",
+            "Explain this feature in detail:\n",
             f"Name: {suggestion.name}",
             f"Description: {suggestion.description}",
             f"Source columns: {', '.join(suggestion.source_columns)}",

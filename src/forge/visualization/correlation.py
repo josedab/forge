@@ -22,8 +22,8 @@ def plot_correlation_matrix(
     annot: bool = True,
     mask_upper: bool = True,
     title: str = "Feature Correlation Matrix",
-    ax: "Axes | None" = None
-) -> "Figure":
+    ax: Axes | None = None
+) -> Figure:
     """Plot correlation matrix heatmap.
 
     Args:
@@ -103,7 +103,7 @@ def plot_target_correlation(
     top_n: int = 20,
     figsize: tuple[int, int] = (10, 8),
     color: str = "steelblue"
-) -> "Figure":
+) -> Figure:
     """Plot correlation of features with target variable.
 
     Args:
@@ -155,7 +155,7 @@ def plot_correlation_clusters(
     X: pd.DataFrame,
     threshold: float = 0.7,
     figsize: tuple[int, int] = (12, 10),
-) -> "Figure":
+) -> Figure:
     """Plot correlation matrix with hierarchical clustering.
 
     Args:

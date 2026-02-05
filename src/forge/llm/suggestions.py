@@ -7,8 +7,8 @@ import json
 import re
 import time
 from abc import ABC, abstractmethod
-from dataclasses import dataclass, field
-from typing import Any, Callable
+from dataclasses import dataclass
+from typing import Any
 
 from forge.exceptions import ConfigurationError, MissingDependencyError
 from forge.llm.metadata import DatasetMetadata
@@ -182,8 +182,8 @@ class LocalModelProvider(LLMProvider):
 
     def generate(self, prompt: str, system_prompt: str | None = None) -> str:
         """Generate response using local Ollama instance."""
-        import urllib.request
         import urllib.error
+        import urllib.request
 
         full_prompt = prompt
         if system_prompt:

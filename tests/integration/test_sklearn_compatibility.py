@@ -4,14 +4,12 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-import pytest
 from sklearn.base import clone
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
 from sklearn.pipeline import Pipeline
 
 from forge import AutoFeatureTransformer, ForgePipeline
-from forge.generators.categorical import OneHotEncoder, TargetEncoder
 from forge.generators.numeric import InteractionGenerator, NumericTransformer
 from forge.selectors import CorrelationSelector, ImportanceSelector, VarianceSelector
 

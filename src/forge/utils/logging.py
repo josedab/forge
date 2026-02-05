@@ -132,7 +132,7 @@ class LogContext:
         self.logger_name = logger_name
         self._original_level: int | None = None
 
-    def __enter__(self) -> "LogContext":
+    def __enter__(self) -> LogContext:
         logger = logging.getLogger(self.logger_name)
         self._original_level = logger.level
         logger.setLevel(self.level)
@@ -201,7 +201,7 @@ class ProgressLogger:
 
 
 def log_dataframe_info(
-    df: "object",
+    df: object,
     name: str = "DataFrame",
     logger_name: str = "forge"
 ) -> None:

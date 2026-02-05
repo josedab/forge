@@ -10,7 +10,7 @@ from typing import Any, Callable
 import numpy as np
 import pandas as pd
 
-from forge.exceptions import ConfigurationError, FeatureGenerationError, ValidationError
+from forge.exceptions import ValidationError
 from forge.multitable.relationships import (
     Relationship,
     RelationshipGraph,

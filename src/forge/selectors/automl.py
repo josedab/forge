@@ -10,12 +10,11 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import cross_val_score
 
-from forge.exceptions import ConfigurationError, NotFittedError, ValidationError
+from forge.exceptions import ValidationError
 from forge.selectors.base import BaseFeatureSelector
 
 if TYPE_CHECKING:
     from typing_extensions import Self
-    from numpy.typing import NDArray
 
 
 @dataclass
@@ -183,7 +182,7 @@ class BayesianFeatureSelector(BaseFeatureSelector):
         ], dtype=bool)
 
         # Compute scores (based on inclusion in top subsets)
-        feature_scores = {f: 0.0 for f in self._feature_names_in}
+        feature_scores = dict.fromkeys(self._feature_names_in, 0.0)
         for subset, score in self._state.evaluated_subsets:
             for f in subset:
                 feature_scores[f] += score

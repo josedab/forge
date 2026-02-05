@@ -8,15 +8,13 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-import pytest
-from hypothesis import given, settings, assume
+from hypothesis import assume, given, settings
 from hypothesis import strategies as st
 from hypothesis.extra.pandas import column, data_frames, range_indexes
 
+from forge.generators.categorical import FrequencyEncoder, OneHotEncoder
 from forge.generators.numeric import InteractionGenerator, PolynomialGenerator
-from forge.generators.categorical import OneHotEncoder, TargetEncoder, FrequencyEncoder
-from forge.selectors import VarianceSelector, CorrelationSelector
-
+from forge.selectors import CorrelationSelector, VarianceSelector
 
 # =============================================================================
 # Strategies for generating test data
@@ -169,7 +167,7 @@ class TestOneHotEncoderProperties:
         for col in result.columns:
             if col != "category":
                 unique_vals = set(result[col].dropna().unique())
-                assert unique_vals.issubset({0, 1, 0.0, 1.0})
+                assert unique_vals.issubset({0, 1})
 
     @given(
         n_rows=st.integers(min_value=10, max_value=100),

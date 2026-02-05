@@ -6,8 +6,13 @@ from typing import TYPE_CHECKING
 
 import numpy as np
 import pandas as pd
-from scipy import stats
-from sklearn.feature_selection import chi2, f_classif, f_regression, mutual_info_classif, mutual_info_regression
+from sklearn.feature_selection import (
+    chi2,
+    f_classif,
+    f_regression,
+    mutual_info_classif,
+    mutual_info_regression,
+)
 
 from forge.selectors.base import BaseFeatureSelector
 

@@ -12,8 +12,8 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from forge.exceptions import NotFittedError, ValidationError
 
 if TYPE_CHECKING:
-    from typing_extensions import Self
     from numpy.typing import NDArray
+    from typing_extensions import Self
 
 
 class BaseFeatureSelector(BaseEstimator, TransformerMixin, ABC):

@@ -21,8 +21,8 @@ def plot_feature_importance(
     figsize: tuple[int, int] = (10, 8),
     color: str = "steelblue",
     title: str = "Feature Importance",
-    ax: "Axes | None" = None
-) -> "Figure":
+    ax: Axes | None = None
+) -> Figure:
     """Plot feature importance as a horizontal bar chart.
 
     Args:
@@ -90,7 +90,7 @@ def plot_importance_comparison(
     importance_dfs: dict[str, pd.DataFrame],
     top_n: int = 15,
     figsize: tuple[int, int] = (12, 8),
-) -> "Figure":
+) -> Figure:
     """Plot feature importance comparison across multiple methods.
 
     Args:
@@ -139,7 +139,7 @@ def plot_cumulative_importance(
     importance_df: pd.DataFrame,
     threshold: float = 0.95,
     figsize: tuple[int, int] = (10, 6),
-) -> "Figure":
+) -> Figure:
     """Plot cumulative feature importance.
 
     Shows how many features are needed to reach a given importance threshold.

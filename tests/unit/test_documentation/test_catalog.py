@@ -1,17 +1,16 @@
 """Tests for feature catalog."""
 
-import json
 import tempfile
 from pathlib import Path
 
 import pytest
 
-from forge.documentation.generator import FeatureDoc, DatasetDoc
 from forge.documentation.catalog import (
-    FeatureCatalog,
     CatalogEntry,
+    FeatureCatalog,
     create_catalog,
 )
+from forge.documentation.generator import DatasetDoc, FeatureDoc
 
 
 @pytest.fixture

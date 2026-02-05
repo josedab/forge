@@ -9,7 +9,7 @@ import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 
 from forge.exceptions import FeatureGenerationError, NotFittedError, ValidationError
-from forge.llm.metadata import MetadataExtractor, DatasetMetadata
+from forge.llm.metadata import MetadataExtractor
 from forge.llm.suggestions import FeatureSuggester, FeatureSuggestion, LLMProvider
 
 if TYPE_CHECKING:
@@ -310,7 +310,7 @@ class LLMFeatureGenerator(BaseEstimator, TransformerMixin):
             if len(source_cols) >= 2:
                 result = X[source_cols[0]] - X[source_cols[1]]
             else:
-                raise FeatureGenerationError(f"Difference requires 2 columns")
+                raise FeatureGenerationError("Difference requires 2 columns")
             return result.astype(float)
 
         elif transformation == "log":

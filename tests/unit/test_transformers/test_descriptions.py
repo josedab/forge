@@ -3,11 +3,10 @@
 from __future__ import annotations
 
 import pandas as pd
-import pytest
 
 from forge.transformers.descriptions import (
-    FeatureDescription,
     FeatureDescriber,
+    FeatureDescription,
     FeatureLineage,
 )
 
@@ -222,7 +221,7 @@ class TestFeatureDescriber:
             component="year",
         )
 
-        assert "Year extracted from date" == desc.description
+        assert desc.description == "Year extracted from date"
         assert desc.generator == "DateTimeComponents"
 
     def test_describe_temporal_month(self):
@@ -233,7 +232,7 @@ class TestFeatureDescriber:
             component="month",
         )
 
-        assert "Month (1-12) extracted from date" == desc.description
+        assert desc.description == "Month (1-12) extracted from date"
 
     def test_describe_temporal_is_weekend(self):
         """Test temporal is_weekend description."""

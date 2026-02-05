@@ -10,24 +10,22 @@ import numpy as np
 import pandas as pd
 from sklearn.base import clone
 from sklearn.ensemble import (
-    RandomForestClassifier,
-    RandomForestRegressor,
     GradientBoostingClassifier,
     GradientBoostingRegressor,
+    RandomForestClassifier,
+    RandomForestRegressor,
 )
 from sklearn.linear_model import (
     LassoCV,
-    RidgeCV,
     LogisticRegressionCV,
 )
 from sklearn.preprocessing import StandardScaler
 
-from forge.exceptions import NotFittedError, ValidationError
+from forge.exceptions import ValidationError
 from forge.selectors.base import BaseFeatureSelector
 
 if TYPE_CHECKING:
     from typing_extensions import Self
-    from numpy.typing import NDArray
 
 
 @dataclass

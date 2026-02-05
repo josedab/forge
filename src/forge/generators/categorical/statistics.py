@@ -84,7 +84,7 @@ class CategoryStatistics(BaseFeatureGenerator):
 
         # Compute statistics
         for group_col in self.group_cols:
-            agg_dict = {col: self.stats for col in agg_cols}
+            agg_dict = dict.fromkeys(agg_cols, self.stats)
             grouped = X.groupby(group_col, observed=True).agg(agg_dict)
 
             # Flatten column names,

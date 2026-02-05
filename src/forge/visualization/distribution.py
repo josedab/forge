@@ -19,7 +19,7 @@ def plot_feature_distributions(
     n_cols: int = 3,
     figsize: tuple[int, int] | None = None,
     bins: int = 30
-) -> "Figure":
+) -> Figure:
     """Plot distributions of numeric features.
 
     Args:
@@ -87,7 +87,7 @@ def plot_distribution_by_target(
     columns: list[str] | None = None,
     n_cols: int = 3,
     figsize: tuple[int, int] | None = None
-) -> "Figure":
+) -> Figure:
     """Plot feature distributions split by target class.
 
     Args:
@@ -137,7 +137,7 @@ def plot_missing_values(
     X: pd.DataFrame,
     figsize: tuple[int, int] = (12, 6),
     sort: bool = True
-) -> "Figure":
+) -> Figure:
     """Plot missing values by column.
 
     Args:
@@ -188,7 +188,7 @@ def plot_boxplots(
     columns: list[str] | None = None,
     n_cols: int = 4,
     figsize: tuple[int, int] | None = None
-) -> "Figure":
+) -> Figure:
     """Plot boxplots for numeric features.
 
     Args:

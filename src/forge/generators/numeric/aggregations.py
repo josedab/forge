@@ -89,7 +89,7 @@ class AggregationGenerator(BaseFeatureGenerator):
 
         # Compute aggregations for each group column combination,
         group_key = "_".join(self.group_cols)
-        agg_dict = {col: self.agg_funcs for col in agg_cols}
+        agg_dict = dict.fromkeys(agg_cols, self.agg_funcs)
         agg_df = X.groupby(self.group_cols, observed=True).agg(agg_dict)
 
         # Flatten column names,

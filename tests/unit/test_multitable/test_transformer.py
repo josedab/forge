@@ -1,13 +1,13 @@
 """Tests for multi-table transformer."""
 
-import numpy as np
-import pandas as pd
-import pytest
 import tempfile
 from pathlib import Path
 
-from forge.multitable.transformer import MultiTableTransformer, multi_table_features
+import pandas as pd
+import pytest
+
 from forge.exceptions import NotFittedError, ValidationError
+from forge.multitable.transformer import MultiTableTransformer, multi_table_features
 
 
 @pytest.fixture

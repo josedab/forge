@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -277,7 +277,7 @@ class FeastRegistry(FeatureRegistry):
                 features=feature_refs,
             )
             return historical_features.to_df()
-        except Exception as e:
+        except Exception:
             # Fallback: return entity_df with NaN features
             result = entity_df.copy()
             for feat in features:
@@ -323,7 +323,7 @@ class FeastRegistry(FeatureRegistry):
             lines.extend([
                 f"{entity} = Entity(",
                 f'    name="{entity}",',
-                f'    value_type=ValueType.STRING,',
+                '    value_type=ValueType.STRING,',
                 f'    description="Entity for {entity}",',
                 ")",
                 "",
@@ -369,7 +369,7 @@ class FeastRegistry(FeatureRegistry):
         lines = [
             f"{view_name}_source = FileSource(",
             f'    path="data/{feature_set.name}.parquet",',
-            f'    event_timestamp_column="event_timestamp",',
+            '    event_timestamp_column="event_timestamp",',
             ")",
             "",
             f"{view_name} = FeatureView(",

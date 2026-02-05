@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import shutil
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -15,7 +14,6 @@ from forge.registry.base import (
     FeatureDefinition,
     FeatureRegistry,
     FeatureSet,
-    FeatureType,
     FeatureVersion,
     RegistryConfig,
 )
@@ -322,7 +320,7 @@ class LocalRegistry(FeatureRegistry):
         """Import feature definitions from a JSON file."""
         self._check_connected()
 
-        with open(input_path, "r") as f:
+        with open(input_path) as f:
             data = json.load(f)
 
         count = 0
@@ -349,7 +347,7 @@ class LocalRegistry(FeatureRegistry):
         # Load features
         features_dir = self._path / "features"
         for feat_file in features_dir.glob("*.json"):
-            with open(feat_file, "r") as f:
+            with open(feat_file) as f:
                 data = json.load(f)
                 feature = FeatureDefinition.from_dict(data)
                 self._features[feature.name] = feature
@@ -357,7 +355,7 @@ class LocalRegistry(FeatureRegistry):
         # Load feature sets
         fs_dir = self._path / "feature_sets"
         for fs_file in fs_dir.glob("*.json"):
-            with open(fs_file, "r") as f:
+            with open(fs_file) as f:
                 data = json.load(f)
                 fs = FeatureSet.from_dict(data)
                 self._feature_sets[fs.name] = fs
@@ -369,7 +367,7 @@ class LocalRegistry(FeatureRegistry):
                 feat_name = feat_dir.name
                 self._versions[feat_name] = []
                 for ver_file in sorted(feat_dir.glob("*.json")):
-                    with open(ver_file, "r") as f:
+                    with open(ver_file) as f:
                         data = json.load(f)
                         version = FeatureVersion(**data)
                         self._versions[feat_name].append(version)

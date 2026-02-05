@@ -5,13 +5,13 @@ import pandas as pd
 import pytest
 from sklearn.datasets import make_classification
 
+from forge.exceptions import ValidationError
 from forge.selectors.ensemble import (
     EnsembleImportanceSelector,
-    StabilitySelector,
     ImportanceMethod,
+    StabilitySelector,
     ensemble_importance,
 )
-from forge.exceptions import NotFittedError, ValidationError
 
 
 @pytest.fixture

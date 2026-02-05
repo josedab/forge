@@ -3,15 +3,15 @@
 import numpy as np
 import pandas as pd
 import pytest
-from sklearn.datasets import make_classification, make_regression
+from sklearn.datasets import make_classification
 
+from forge.exceptions import NotFittedError, ValidationError
 from forge.generators.interactions import (
+    GroupedInteractionGenerator,
     InteractionDiscoverer,
     PolynomialInteractionGenerator,
-    GroupedInteractionGenerator,
     discover_interactions,
 )
-from forge.exceptions import NotFittedError, ValidationError
 
 
 @pytest.fixture

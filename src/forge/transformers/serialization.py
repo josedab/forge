@@ -7,8 +7,6 @@ import pickle
 from pathlib import Path
 from typing import Any
 
-import pandas as pd
-
 
 def save_transformer(
     transformer: Any,

@@ -4,15 +4,15 @@ from __future__ import annotations
 
 import itertools
 import warnings
-from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, Any, Callable, Literal
+from dataclasses import dataclass
+from typing import TYPE_CHECKING, Any, Literal
 
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
-from sklearn.preprocessing import PolynomialFeatures, StandardScaler
+from sklearn.preprocessing import PolynomialFeatures
 
-from forge.exceptions import NotFittedError, ValidationError
+from forge.exceptions import ValidationError
 from forge.generators.base import BaseFeatureGenerator
 
 if TYPE_CHECKING:

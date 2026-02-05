@@ -2,15 +2,10 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
-
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 
 from forge.exceptions import NotFittedError
-
-if TYPE_CHECKING:
-    from typing_extensions import Self
 
 
 class ForgeTransformerMixin(BaseEstimator, TransformerMixin):

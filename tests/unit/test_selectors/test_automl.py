@@ -1,17 +1,16 @@
 """Tests for AutoML feature selectors."""
 
-import numpy as np
 import pandas as pd
 import pytest
 from sklearn.datasets import make_classification, make_regression
 
+from forge.exceptions import NotFittedError, ValidationError
 from forge.selectors.automl import (
     BayesianFeatureSelector,
-    SequentialFeatureSelector,
     GeneticFeatureSelector,
+    SequentialFeatureSelector,
     auto_select_features,
 )
-from forge.exceptions import NotFittedError, ValidationError
 
 
 @pytest.fixture

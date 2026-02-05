@@ -6,7 +6,6 @@ import os
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from typing import TYPE_CHECKING, Any, Literal
 
-import numpy as np
 import pandas as pd
 
 if TYPE_CHECKING:
@@ -228,7 +227,7 @@ class ParallelProcessor:
         self.backend = backend
         self._executor: ThreadPoolExecutor | ProcessPoolExecutor | None = None
 
-    def __enter__(self) -> "ParallelProcessor":
+    def __enter__(self) -> ParallelProcessor:
         if self.backend == "threading":
             self._executor = ThreadPoolExecutor(max_workers=self.n_jobs)
         else:

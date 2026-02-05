@@ -4,16 +4,15 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-import pytest
 
 from forge.generators.numeric import (
     AggregationGenerator,
-    InteractionGenerator,
-    PolynomialGenerator,
-    NumericTransformer,
-    LogTransformer,
-    PowerTransformer,
     BinningTransformer,
+    InteractionGenerator,
+    LogTransformer,
+    NumericTransformer,
+    PolynomialGenerator,
+    PowerTransformer,
 )
 
 

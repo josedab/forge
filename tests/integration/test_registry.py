@@ -3,22 +3,21 @@
 from __future__ import annotations
 
 import tempfile
-from datetime import datetime, timedelta
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import pytest
 
+from forge.exceptions import ConfigurationError, ValidationError
 from forge.registry import (
-    LocalRegistry,
     FeatureDefinition,
     FeatureSet,
+    LocalRegistry,
     RegistryConfig,
 )
 from forge.registry.base import FeatureType
 from forge.registry.local_registry import create_local_registry, create_registry
-from forge.exceptions import ConfigurationError, ValidationError
 
 
 @pytest.fixture

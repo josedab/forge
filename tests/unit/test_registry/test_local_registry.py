@@ -1,18 +1,18 @@
 """Tests for local feature registry."""
 
-import numpy as np
-import pandas as pd
-import pytest
 import tempfile
 from pathlib import Path
+
+import pandas as pd
+import pytest
 
 from forge.registry.base import (
     FeatureDefinition,
     FeatureSet,
     FeatureType,
     RegistryConfig,
-    infer_feature_type,
     create_feature_definitions_from_dataframe,
+    infer_feature_type,
 )
 from forge.registry.local_registry import LocalRegistry, create_local_registry
 

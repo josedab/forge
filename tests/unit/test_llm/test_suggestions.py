@@ -4,14 +4,13 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from forge.llm.metadata import MetadataExtractor, DatasetMetadata
+from forge.llm.metadata import MetadataExtractor
 from forge.llm.suggestions import (
-    FeatureSuggestion,
     FeatureSuggester,
-    SuggestionCache,
+    FeatureSuggestion,
     LLMProvider,
+    SuggestionCache,
 )
-from forge.types import ColumnType
 
 
 @pytest.fixture

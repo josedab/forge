@@ -5,9 +5,9 @@ import pandas as pd
 import pytest
 
 from forge.documentation.generator import (
-    FeatureDocumentationGenerator,
-    FeatureDoc,
     DatasetDoc,
+    FeatureDoc,
+    FeatureDocumentationGenerator,
     generate_documentation,
 )
 

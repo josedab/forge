@@ -13,12 +13,10 @@ from forge.exceptions import NotFittedError, ValidationError
 from forge.multitable.relationships import (
     RelationshipGraph,
     detect_relationships,
-    Relationship,
 )
 from forge.multitable.synthesis import (
     DeepFeatureSynthesis,
     FeatureDefinition,
-    SynthesisResult,
 )
 
 if TYPE_CHECKING:

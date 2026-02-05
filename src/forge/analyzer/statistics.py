@@ -255,7 +255,7 @@ class StatisticsProfiler:
                 "y": True, "n": False,
                 "Y": True, "N": False,
             }
-            bool_vals = non_null.map(lambda x: bool_map.get(x, None)).dropna()
+            bool_vals = non_null.map(lambda x: bool_map.get(x)).dropna()
         else:
             bool_vals = non_null
 

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
 
-import numpy as np
 import pandas as pd
 
 from forge.exceptions import MissingDependencyError
@@ -19,7 +18,7 @@ def plot_shap_summary(
     max_display: int = 20,
     plot_type: str = "dot",
     figsize: tuple[int, int] = (10, 8),
-) -> "Figure":
+) -> Figure:
     """Plot SHAP summary plot.
 
     Args:
@@ -63,7 +62,7 @@ def plot_shap_waterfall(
     idx: int = 0,
     max_display: int = 15,
     figsize: tuple[int, int] = (10, 8),
-) -> "Figure":
+) -> Figure:
     """Plot SHAP waterfall for a single prediction.
 
     Args:
@@ -101,7 +100,7 @@ def plot_shap_dependence(
     X: pd.DataFrame,
     interaction_feature: str | None = "auto",
     figsize: tuple[int, int] = (8, 6),
-) -> "Figure":
+) -> Figure:
     """Plot SHAP dependence plot for a feature.
 
     Args:
@@ -137,7 +136,7 @@ def plot_shap_force(
     shap_values: Any,
     idx: int = 0,
     figsize: tuple[int, int] = (12, 3),
-) -> "Figure":
+) -> Figure:
     """Plot SHAP force plot for a single prediction.
 
     Args:
@@ -170,7 +169,7 @@ def plot_shap_bar(
     shap_values: Any,
     max_display: int = 15,
     figsize: tuple[int, int] = (10, 8),
-) -> "Figure":
+) -> Figure:
     """Plot SHAP bar plot showing mean absolute values.
 
     Args:

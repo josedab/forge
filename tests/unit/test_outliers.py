@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-import pytest
 
 from forge.outliers import ArbitraryCapper, IQRCapper, Trimmer, Winsorizer
 
@@ -270,7 +269,6 @@ class TestSklearnCompatibility:
     def test_pipeline_integration(self, sample_df_with_outliers: pd.DataFrame):
         """Test integration with sklearn Pipeline."""
         from sklearn.pipeline import Pipeline
-        from sklearn.preprocessing import StandardScaler
 
         # Create pipeline with Winsorizer
         pipeline = Pipeline(

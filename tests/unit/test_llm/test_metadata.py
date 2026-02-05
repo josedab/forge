@@ -5,9 +5,9 @@ import pandas as pd
 import pytest
 
 from forge.llm.metadata import (
-    MetadataExtractor,
-    DatasetMetadata,
     ColumnMetadata,
+    DatasetMetadata,
+    MetadataExtractor,
 )
 from forge.types import ColumnType
 

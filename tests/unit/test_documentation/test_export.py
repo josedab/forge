@@ -6,14 +6,14 @@ from pathlib import Path
 
 import pytest
 
-from forge.documentation.generator import FeatureDoc, DatasetDoc
 from forge.documentation.catalog import FeatureCatalog
 from forge.documentation.export import (
-    MarkdownExporter,
     HTMLExporter,
     JSONExporter,
+    MarkdownExporter,
     export_documentation,
 )
+from forge.documentation.generator import DatasetDoc, FeatureDoc
 
 
 @pytest.fixture

@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 class MemoryEstimate:
     """Memory usage estimate for a feature engineering operation.
 
-    Attributes
+    Attributes:
     ----------
     input_size_mb : float
         Estimated size of input data in MB.
@@ -59,7 +59,7 @@ class MemoryEstimate:
 def get_available_memory() -> float:
     """Get available system memory in MB.
 
-    Returns
+    Returns:
     -------
     float
         Available memory in megabytes.
@@ -81,7 +81,7 @@ def estimate_dataframe_size(df: pd.DataFrame) -> float:
     df : pd.DataFrame
         DataFrame to estimate.
 
-    Returns
+    Returns:
     -------
     float
         Estimated size in megabytes.
@@ -111,12 +111,12 @@ def estimate_feature_engineering_memory(
     expansion_factor : float
         Multiplier for feature expansion (default 3x for interactions).
 
-    Returns
+    Returns:
     -------
     MemoryEstimate
         Memory usage estimate with recommendations.
 
-    Examples
+    Examples:
     --------
     >>> import pandas as pd
     >>> X = pd.DataFrame({'a': range(100000), 'b': range(100000)})
@@ -197,17 +197,17 @@ def check_memory_and_warn(
         If True, raise MemoryError when memory is insufficient.
         If False (default), only emit a warning.
 
-    Returns
+    Returns:
     -------
     MemoryEstimate
         Memory usage estimate.
 
-    Raises
+    Raises:
     ------
     MemoryError
         If raise_on_danger is True and memory is insufficient.
 
-    Warns
+    Warns:
     -----
     ResourceWarning
         If memory usage is close to or exceeds available memory.
@@ -253,12 +253,12 @@ def process_in_chunks(
     verbose : bool
         Whether to print progress information.
 
-    Returns
+    Returns:
     -------
     pd.DataFrame
         Concatenated transformed data.
 
-    Examples
+    Examples:
     --------
     >>> from forge import AutoFeatureTransformer
     >>> transformer = AutoFeatureTransformer(max_features=50)
@@ -303,7 +303,7 @@ def get_memory_usage_summary(X: pd.DataFrame) -> dict[str, float]:
     X : pd.DataFrame
         Input DataFrame.
 
-    Returns
+    Returns:
     -------
     dict[str, float]
         Memory usage breakdown in MB.
@@ -334,7 +334,7 @@ def suggest_dtype_optimizations(X: pd.DataFrame) -> list[str]:
     X : pd.DataFrame
         Input DataFrame.
 
-    Returns
+    Returns:
     -------
     list[str]
         List of optimization suggestions.

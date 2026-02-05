@@ -5,13 +5,10 @@ from __future__ import annotations
 import json
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Literal
+from typing import Any, Literal
 
-from forge.documentation.generator import DatasetDoc, FeatureDoc
 from forge.documentation.catalog import FeatureCatalog
-
-if TYPE_CHECKING:
-    pass
+from forge.documentation.generator import DatasetDoc, FeatureDoc
 
 
 class BaseExporter(ABC):

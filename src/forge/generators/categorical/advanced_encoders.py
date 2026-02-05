@@ -36,20 +36,20 @@ class WoEEncoder(BaseFeatureGenerator):
         Smoothing factor to prevent division by zero and handle
         categories with no events or non-events.
 
-    Attributes
+    Attributes:
     ----------,
     woe_maps_ : dict[str, dict]
         WoE values for each category in each column.,
     iv_scores_ : dict[str, float]
         Information Value scores for each column.
 
-    Examples
+    Examples:
     --------
     >>> from forge.generators.categorical import WoEEncoder,
     >>> encoder = WoEEncoder()
     >>> X_encoded = encoder.fit_transform(X, y)
 
-    Notes
+    Notes:
     -----
     WoE encoding requires a binary target variable (0/1).,
     The Information Value (IV) can be used for feature selection:
@@ -58,7 +58,7 @@ class WoEEncoder(BaseFeatureGenerator):
     - 0.1 <= IV < 0.3: Medium predictive power
     - IV >= 0.3: Strong predictive power
 
-    See Also
+    See Also:
     --------,
     TargetEncoder : Mean target encoding with smoothing.
     """
@@ -95,7 +95,7 @@ class WoEEncoder(BaseFeatureGenerator):
         y : pd.Series
             Binary target variable (0/1). Required.
 
-        Returns
+        Returns:
         -------
         self
             Fitted encoder.
@@ -156,7 +156,7 @@ class WoEEncoder(BaseFeatureGenerator):
         X : pd.DataFrame
             Input features.
 
-        Returns
+        Returns:
         -------
         pd.DataFrame
             WoE encoded features.
@@ -177,7 +177,7 @@ class WoEEncoder(BaseFeatureGenerator):
     def get_information_value(self) -> dict[str, float]:
         """Get Information Value scores for each column.
 
-        Returns
+        Returns:
         -------
         dict[str, float]
             IV scores for each encoded column.
@@ -204,19 +204,19 @@ class CatBoostEncoder(BaseFeatureGenerator):
     a : float, default=1.0
         Smoothing parameter. Higher values give more weight to prior.
 
-    Examples
+    Examples:
     --------
     >>> from forge.generators.categorical import CatBoostEncoder,
     >>> encoder = CatBoostEncoder()
     >>> X_encoded = encoder.fit_transform(X, y)
 
-    Notes
+    Notes:
     -----
     This encoder is particularly useful for preventing target leakage
     in cross-validation scenarios. The encoding for each row only uses
     information from previous rows, simulating a streaming scenario.
 
-    See Also
+    See Also:
     --------,
     TargetEncoder : Standard mean target encoding.,
     LeaveOneOutEncoder : LOO target encoding.
@@ -246,7 +246,7 @@ class CatBoostEncoder(BaseFeatureGenerator):
         y : pd.Series
             Target variable. Required.
 
-        Returns
+        Returns:
         -------
         self
             Fitted encoder.
@@ -288,7 +288,7 @@ class CatBoostEncoder(BaseFeatureGenerator):
         X : pd.DataFrame
             Input features.
 
-        Returns
+        Returns:
         -------
         pd.DataFrame
             CatBoost encoded features.
@@ -333,18 +333,18 @@ class LeaveOneOutEncoder(BaseFeatureGenerator):
     handle_unknown : str, default='global_mean'
         Strategy for unknown categories: 'global_mean' or 'zero'.
 
-    Examples
+    Examples:
     --------
     >>> from forge.generators.categorical import LeaveOneOutEncoder,
     >>> encoder = LeaveOneOutEncoder()
     >>> X_encoded = encoder.fit_transform(X, y)
 
-    Notes
+    Notes:
     -----
     During transform on new data (without target), uses the full
     category means from training.
 
-    See Also
+    See Also:
     --------,
     TargetEncoder : Standard mean target encoding.,
     CatBoostEncoder : Ordered target encoding.
@@ -374,7 +374,7 @@ class LeaveOneOutEncoder(BaseFeatureGenerator):
         y : pd.Series
             Target variable. Required.
 
-        Returns
+        Returns:
         -------
         self
             Fitted encoder.
@@ -416,7 +416,7 @@ class LeaveOneOutEncoder(BaseFeatureGenerator):
         X : pd.DataFrame
             Input features.
 
-        Returns
+        Returns:
         -------
         pd.DataFrame
             LOO encoded features.
@@ -471,13 +471,13 @@ class HashingEncoder(BaseFeatureGenerator):
     hash_method : str, default='md5'
         Hash function to use: 'md5' or 'murmur'.
 
-    Examples
+    Examples:
     --------
     >>> from forge.generators.categorical import HashingEncoder,
     >>> encoder = HashingEncoder(n_components=16)
     >>> X_encoded = encoder.fit_transform(X)
 
-    Notes
+    Notes:
     -----,
     Advantages:
     - Fixed output dimensionality regardless of cardinality
@@ -488,7 +488,7 @@ class HashingEncoder(BaseFeatureGenerator):
     - Hash collisions can occur
     - Not invertible (can't decode back to original)
 
-    See Also
+    See Also:
     --------,
     OneHotEncoder : Standard one-hot encoding.
     """
@@ -514,7 +514,7 @@ class HashingEncoder(BaseFeatureGenerator):
         y : pd.Series | None
             Ignored.
 
-        Returns
+        Returns:
         -------
         self
             Fitted encoder.
@@ -558,7 +558,7 @@ class HashingEncoder(BaseFeatureGenerator):
         X : pd.DataFrame
             Input features.
 
-        Returns
+        Returns:
         -------
         pd.DataFrame
             Hash encoded features.
