@@ -41,9 +41,17 @@ For XGBoost and LightGBM-based importance:
 pip install forge-features[boosting]
 ```
 
+### Recommended (Most Users)
+
+Install visualization, SHAP, and gradient boosting — everything most users need without heavy dependencies like LLMs or distributed compute:
+
+```bash
+pip install forge-features[recommended]
+```
+
 ### All Features
 
-Install everything:
+Install everything (including LLM, distributed, and dashboard dependencies):
 
 ```bash
 pip install forge-features[all]
@@ -75,8 +83,14 @@ pre-commit install
 Verify your installation works:
 
 ```python
-from forge import AutoFeatureTransformer
-print(f"Forge version: {AutoFeatureTransformer.__module__}")
+from forge import __version__
+print(f"Forge version: {__version__}")
+```
+
+Or run the smoke tests:
+
+```bash
+pytest tests/smoke_test.py -v
 ```
 
 ## Troubleshooting

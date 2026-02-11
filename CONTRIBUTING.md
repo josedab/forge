@@ -53,7 +53,13 @@ This project follows the [Contributor Covenant Code of Conduct](https://www.cont
 We use `pytest` for testing. The `Makefile` provides convenient commands:
 
 ```bash
-# Run all tests
+# Quick smoke test to verify your setup works (<10s)
+make smoke-test
+
+# Run unit tests with minimal output (~2-3 min)
+make test-fast
+
+# Run all tests with verbose output (~5 min)
 make test
 
 # Run unit tests only
@@ -74,6 +80,15 @@ make typecheck
 # Run all checks (format, lint, typecheck, test)
 make check
 ```
+
+### Recommended Workflow
+
+For fast feedback during development:
+
+1. **After setup**: Run `make smoke-test` to verify your environment
+2. **During development**: Run `make test-fast` to check your changes
+3. **Before committing**: Run `make lint && make test-unit`
+4. **Before opening a PR**: Run `make check` (full suite)
 
 ### Running Specific Tests
 
@@ -159,11 +174,16 @@ Key style points:
    git checkout -b feature/your-feature-name
    ```
 
-2. **Make your changes** following the coding standards
+2. **Verify your setup** works:
+   ```bash
+   make smoke-test
+   ```
 
-3. **Add tests** for any new functionality
+3. **Make your changes** following the coding standards
 
-4. **Run the full test suite**:
+4. **Add tests** for any new functionality
+
+5. **Run the full test suite**:
    ```bash
    make check
    ```

@@ -1,4 +1,4 @@
-.PHONY: install install-dev test test-unit test-integration test-coverage lint format typecheck check clean build benchmark docs-serve docs-build
+.PHONY: install install-dev test smoke-test test-unit test-integration test-fast test-coverage lint format typecheck check clean build benchmark docs-serve docs-build
 
 # Install package
 install:
@@ -12,9 +12,17 @@ install-dev:
 test:
 	pytest tests/ -v
 
+# Run smoke tests (fast verification, <10s)
+smoke-test:
+	pytest tests/smoke_test.py -v
+
 # Run unit tests only
 test-unit:
 	pytest tests/unit/ -v
+
+# Run unit tests quickly (minimal output)
+test-fast:
+	pytest tests/unit/ -q --tb=line
 
 # Run integration tests only
 test-integration:

@@ -6,6 +6,10 @@ default:
 install:
     pip install -e ".[dev,all]"
 
+# Run smoke tests (fast verification, <10s)
+smoke-test:
+    pytest tests/smoke_test.py -v
+
 # Run all tests
 test:
     pytest tests/ -v
@@ -17,6 +21,10 @@ test-cov:
 # Run unit tests only
 test-unit:
     pytest tests/unit/ -v
+
+# Run unit tests quickly (minimal output)
+test-fast:
+    pytest tests/unit/ -q --tb=line
 
 # Run integration tests only
 test-integration:
