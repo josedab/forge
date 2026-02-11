@@ -49,6 +49,22 @@ llm = [
     "anthropic>=0.18.0",
 ]
 feast = ["feast>=0.35.0"]
+dashboard = ["streamlit>=1.30.0"]
+catalog-api = ["fastapi>=0.100.0", "uvicorn>=0.25.0"]
+dask = ["dask[distributed]>=2024.1.0"]
+ray = ["ray>=2.9.0"]
+spark = ["pyspark>=3.5.0"]
+gpu = ["cudf-cu12>=24.2.0", "cupy-cuda12x>=13.0.0"]
+neural = ["torch>=2.0.0"]
+serving = ["fastapi>=0.100.0", "uvicorn>=0.25.0"]
+# Recommended extras for most users (viz + boosting + SHAP, no LLM/distributed)
+recommended = [
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "shap>=0.42.0",
+    "xgboost>=2.0.0",
+    "lightgbm>=4.0.0",
+]
 all = [
     "matplotlib>=3.7.0",
     "seaborn>=0.12.0",
@@ -58,6 +74,12 @@ all = [
     "openai>=1.0.0",
     "anthropic>=0.18.0",
     "feast>=0.35.0",
+    "streamlit>=1.30.0",
+    "fastapi>=0.100.0",
+    "uvicorn>=0.25.0",
+    "dask[distributed]>=2024.1.0",
+    "ray>=2.9.0",
+    "pyspark>=3.5.0",
 ]
 dev = [
     "pytest>=7.0.0",
@@ -115,16 +137,26 @@ select = [
     "ASYNC",  # flake8-async
 ]
 ignore = [
-    "E501",   # line too long (handled by formatter)
-    "D100",   # missing docstring in public module
-    "D104",   # missing docstring in public package
-    "D105",   # missing docstring in magic method
-    "D107",   # missing docstring in __init__
-    "S101",   # use of assert (OK in tests)
+    "E501",    # line too long (handled by formatter)
+    "D100",    # missing docstring in public module
+    "D102",    # missing docstring in public method (many are self-explanatory)
+    "D104",    # missing docstring in public package
+    "D105",    # missing docstring in magic method
+    "D107",    # missing docstring in __init__
+    "N803",    # argument name should be lowercase (sklearn uses X, y by convention)
+    "N806",    # variable name should be lowercase (sklearn uses X, y by convention)
+    "S101",    # use of assert (OK in tests)
+    "B904",    # raise from within except (too noisy for existing codebase)
+    "RUF012",  # mutable class variables (common pattern in dataclasses)
+    "SIM108",  # ternary operator (readability preference)
+    "S110",    # try-except-pass (intentional in many cases)
+    "RUF001",  # ambiguous unicode (intentional use of × etc.)
+    "RUF002",  # ambiguous unicode in docstrings
+    "RUF003",  # ambiguous unicode in comments
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**/*.py" = ["S101", "D"]  # Allow asserts and skip docstrings in tests
+"tests/**/*.py" = ["S101", "D", "B018", "PT011", "B017"]  # Allow asserts, skip docstrings, broad exception checks
 "benchmarks/**/*.py" = ["S101", "D"]  # Same for benchmarks
 
 [tool.ruff.lint.pydocstyle]
