@@ -49,7 +49,7 @@ llm = [
     "anthropic>=0.18.0",
 ]
 feast = ["feast>=0.35.0"]
-dashboard = ["streamlit>=1.30.0"]
+dashboard = ["streamlit>=1.50.0"]
 catalog-api = ["fastapi>=0.100.0", "uvicorn>=0.25.0"]
 dask = ["dask[distributed]>=2024.1.0"]
 ray = ["ray>=2.9.0"]
@@ -74,7 +74,7 @@ all = [
     "openai>=1.0.0",
     "anthropic>=0.18.0",
     "feast>=0.35.0",
-    "streamlit>=1.30.0",
+    "streamlit>=1.50.0",
     "fastapi>=0.100.0",
     "uvicorn>=0.25.0",
     "dask[distributed]>=2024.1.0",
